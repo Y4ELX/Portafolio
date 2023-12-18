@@ -1,0 +1,320 @@
+<html>
+    <head>
+        <title>Yael Monterrubio</title>
+        <link rel="icon" href="img/favicon.ico" type="image/ico">
+    </head>
+    <style>
+        ::selection{
+            background: #91bd7d;
+            color: black;
+            border-radius: 1100px;
+        }
+
+        @font-face {
+            font-family: sailec;
+            src: url('fonts/sailec.ttf') format('opentype');
+            /* Otros atributos opcionales como font-weight y font-style pueden ir aquí */
+        }
+
+        /*SCROLLBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRR*/
+        /* Estilos para navegadores basados en WebKit (Chrome, Safari) */
+        ::-webkit-scrollbar {
+        width: 12px; /* Ancho de la barra deslizante */
+        }
+
+        ::-webkit-scrollbar-thumb {
+        background-color: #0e1119; /* Color del pulgar (la parte móvil de la barra) */
+        border-radius: 6px; /* Borde redondeado del pulgar */
+        }
+
+        ::-webkit-scrollbar-track {
+        background-color: #151924; /* Color de la pista (la parte fija de la barra) */
+        }
+
+        /* Estilos para Firefox */
+        /* Nota: Firefox utiliza una sola propiedad para estilizar la barra deslizante */
+        /* Establece el color del fondo de la barra deslizante en Firefox */
+        /* Estos estilos también afectarán a la barra deslizante en Edge e IE */
+        * {
+        scrollbar-color: #888 #f1f1f1;
+        scrollbar-width: thin;
+        cursor: none;
+        }
+
+        /*TERMINAAAAAAAAAAAAA SCROLLBAAAAAAAAAAAAAAAAAAAAAARRR*/
+
+        #nombre{
+            display: none;
+            animation: nomanim 2s; /* Animación de parpadeo */
+        }
+        #sobre{
+            display: none;
+            animation: sobanim 2s; /* Animación de parpadeo */
+        }
+
+        #text::after {
+            content: '|'; /* Carácter del cursor */
+            display: inline-block;
+            animation: blink 700ms infinite; /* Animación de parpadeo */
+            animation-timing-function: step-start; 
+        }
+
+
+        /*CURSOOOORRRRRRR TRAIL*/
+        body {
+        box-sizing: border-box;
+        padding: 0;
+        margin:0;
+        background-color: white;
+        height: 100vh;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes nomanim {
+            0%{
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes sobanim {
+            0%{
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .navbar{
+            height: 1.7em;
+            background-color: #151924;
+            font-size: 2em;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        .proy{
+            margin-left: 20px;
+            color: #8ccb6e;
+            border: 2px solid #8ccb6e;
+            border-radius: 10px; 
+            padding: 10px;
+            background-color: transparent;
+            font-family: monospace;
+            
+        }
+
+        .botonindex{
+            margin-left: 20px;
+            color: #8ccb6e;
+            border: 2px solid #8ccb6e;
+            border-radius: 10px; 
+            padding: 20px;
+            background-color: transparent;
+            font-family: monospace;
+            font-size: 2em;
+        }
+        .otros{
+            margin-left: 20px;
+            color: #d4d4d4;
+            border: 2px solid transparent;
+            background-color: transparent;
+            font-family: monospace;
+        }
+
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #8ccb6e;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            transition: transform 0.1s ease-out;
+            transform-origin: 50% 50%;
+        }
+
+</style>
+
+    <body style="margin: 0; padding: 0;">
+
+        <div id="cursor"></div>
+
+        <div class="navbar">
+            <div>
+                <button onclick="window.open('teeest2.html' , '_self')" style="cursor: pointer; background-repeat: no-repeat; background-size: contain; height: 100%; width: 50px; border: none; background-color: transparent; background-image: url(img/LOGOY.png);"></button>
+            </div>
+
+            <div style="display: flex; margin: 0px;">
+                <button onclick="scrollToAcerca()" id="tocar" class="otros">
+                    Acerca de mí
+                </button>
+                <button onclick="scrollToHabilidades()" id="tocar" class="otros">
+                    Habilidades
+                </button>
+                <button id="tocar"| class="otros">
+                    Contacto
+                </button>
+                <button id="tocar" class="proy">
+                    Proyectos
+                </button>
+            </div>
+
+        </div>
+        <!--#67759c-->
+        <div>
+            <div style="height: 100vh; background-color: #151924; display: flex; flex-direction: column; align-items: flex-start;">
+                <div style="margin-left: 20%; margin-right: 20%; margin-top: 7%;">
+                    <p id="text" style="color: #8ccb6e; font-family: monospace; font-size: 1.8em; margin-bottom: 0;"></p>
+                    <p id="nombre" style="color: #c4c8de; font-family: sailec; font-weight: bold; font-size: 4em; margin: 0px; margin-bottom: 30px;">Yael Monterrubio.</p>
+                    <p id="sobre" style="color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.5em; margin: 0px;">Soy desarrollador frontend con habilidades en HTML,<br> CSS y un poco de JavaScript. Siempre estoy buscando<br> maneras de mejorar mis habilidades y mantenerme al<br> tanto de lo último en desarrollo web.</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div style="padding-left: 20%; height: 100vh; background-color: #151924;">
+                <p id="Acerca" style=" margin: 0;  margin-bottom: 30px;  padding-top: 16%; color: #c4c8de; font-family: sailec; font-weight: bold; font-size: 4em; ">
+                    Acerca de mí
+                </p>
+                <p style="margin: 0px; margin-right: 20%; color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.5em;">
+                        Tengo 18 años, actualmente estudio Ingeniería en Sistemas Computacionales y Electrónicos en <span onclick="window.open('https://www.une.edu.mx/')" style="cursor: pointer; font-weight: bold; color: #8ccb6e;">Universidad del Noreste</span>, en mis estudios, me especializo en desarrollo frontend.
+                    <!--                    <br><br>He completado mi educación en el nivel de preparatoria, obteniendo el título técnico en programación.
+                    <br><br>-->
+                    <br><br><br>
+                </p>
+                <button onclick="scrollToHabilidades()" class="botonindex">
+                    Habilidades
+                </button>
+            </div>
+        </div>
+
+        
+        <div>
+            <div style="padding-left: 20%; height: 100vh; background-color: #151924;">
+                <p id="Habilidades" style=" margin: 0;  margin-bottom: 30px;  padding-top: 10%; color: #c4c8de; font-family: sailec; font-weight: bold; font-size: 4em; ">
+                    Habilidades
+                </p>
+                <p style="margin: 0px; margin-right: 20%; color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.5em;">
+                    Algunas de mis habilidades son:
+                    <br>
+                    <br>
+                    HTML<br>CSS<br>JavaScript<br>Android Studio<br>C#<br>Java<br>
+                    <!--                    <br><br>He completado mi educación en el nivel de preparatoria, obteniendo el título técnico en programación.
+                    <br><br>-->
+                    <br><br><br>
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+            <!--CURSOOORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR-->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                  const cursor = document.getElementById('cursor');
+                  const tocarButton = document.getElementById('tocar');
+            
+                  tocarButton.addEventListener('mouseover', () => {
+                    cursor.style.transform = 'scale(0.5)';
+                  });
+            
+                  tocarButton.addEventListener('mouseout', () => {
+                    cursor.style.transform = 'scale(1)';
+                  });
+            
+                  document.addEventListener('mousemove', function (e) {
+                    const { clientX, clientY } = e;
+                    const cursorSize = 20;
+                    const cursorHalfSize = cursorSize / 8;
+                    const cursorX = clientX - cursorHalfSize;
+                    const cursorY = clientY - cursorHalfSize;
+            
+                    cursor.style.left = `${cursorX}px`;
+                    cursor.style.top = `${cursorY}px`;
+                  });
+                });
+              </script>
+
+
+
+
+
+    </body>
+    <!--SCROLLLLL-->
+    <script>
+        // Restablecer la posición de desplazamiento al principio al recargar la página
+        window.addEventListener('beforeunload', function () {
+          window.scrollTo(0, 0);
+        });
+      </script>
+    <!--ESCRITURAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const textElement = document.getElementById('text');
+            const textContent = "Hola, mi nombre es";
+            let index = 0;
+
+            function writeText() {
+                textElement.innerHTML = textContent.slice(0, index);
+                index++;
+
+                if (index <= textContent.length) {
+                    setTimeout(writeText, 150);
+                }
+            }
+
+            writeText();
+        });
+
+        function scrollToAcerca() {
+            const acercaElement = document.getElementById('Acerca');
+            acercaElement.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToHabilidades() {
+            const acercaElement = document.getElementById('Habilidades');
+            acercaElement.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToContacto() {
+            const acercaElement = document.getElementById('Acerca');
+            acercaElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+    <script>
+        // Función para mostrar el elemento después de 5 segundos
+        function mostrarElemento() {
+        var elemento = document.getElementById('nombre');
+        elemento.style.display = 'block';
+        }
+    
+        // Llama a la función después de 5000 milisegundos (5 segundos)
+        setTimeout(mostrarElemento, 3000);
+    </script>
+    <script>
+        // Función para mostrar el elemento después de 5 segundos
+        function mostrarElemento() {
+        var elemento = document.getElementById('sobre');
+        elemento.style.display = 'block';
+        }
+    
+        // Llama a la función después de 5000 milisegundos (5 segundos)
+        setTimeout(mostrarElemento, 3000);
+    </script>    
+</html>

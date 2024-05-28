@@ -122,7 +122,15 @@
             padding: 10px;
             background-color: transparent;
             font-family: monospace;
-            
+            transition: 1s;           
+        }
+
+        .proy:hover{
+            color: #151924;
+            box-shadow: 0px 0px 15px #60e362;
+            background-color: #41e243;
+            transition: 0.5s;  
+            font-weight: 900;          
         }
 
         .botonindex{
@@ -151,21 +159,24 @@
             border: 2px solid transparent;
             background-color: transparent;
             font-family: monospace;
+            transition: ease-in-out 0.4s;
         }
         .otros:hover{
+            transform: translateY(3px);
             transition: ease-in-out 0.4s;
             color: #51e153;
         }
 
         #cursor {
             position: fixed;
-            width: 20px;
-            height: 20px;
+            z-index: 100;
+            width: 2.8vh;
+            height: 2.8vh;
             border-radius: 50%;
             background-color: #51e153;
             mix-blend-mode: difference;
             pointer-events: none;
-            transition: transform 0.1s ease-out;
+            transition: transform 0.2s ease-out;
             transform-origin: 50% 50%;
         }
 
@@ -180,7 +191,7 @@
                 <button id="tocar5" onclick="window.open('index.html' , '_self')" style="cursor: none; background-repeat: no-repeat; background-size: contain; height: 100%; width: 50px; border: none; background-color: transparent; background-image: url(img/LOGOY.png);"></button>
             </div>
 
-            <div style="display: flex; margin: 0px; width: 60%; display: flex; flex-direction: row; justify-content: flex-end; gap: 3vh; padding-right: 10vh;">
+            <div style="display: flex; margin: 0px; width: 60%; display: flex; flex-direction: row; justify-content: flex-end; gap: 6vh; padding-right: 10vh;">
                 <button onclick="scrollToAcerca()" id="tocar1" class="otros">
                     Acerca de mí
                 </button>
@@ -201,7 +212,7 @@
             <div style="position: relative; top: 20vh; left: 25vh;">
                 <p id="text" style="color: #51e153; font-family: monospace; font-size: 3.5vh; margin-bottom: 0;"></p>
                 <p id="nombre" style="color: #c4c8de; font-family: sailec; font-weight: bold; font-size: 9.5vh; margin: 0px; margin-bottom: 3vh;">Yael Monterrubio.</p>
-                <p id="sobre" style="color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 3.5vh; margin: 0px;">Soy desarrollador frontend con habilidades en HTML,<br> CSS y un poco de JavaScript. Siempre estoy buscando<br> maneras de mejorar mis habilidades y mantenerme al<br> tanto de lo último en desarrollo web.</p>
+                <p id="sobre" style="color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 3.5vh; margin: 0px;">Soy desarrollador frontend con habilidades en HTML,<br> CSS y JavaScript. Siempre estoy buscando maneras de <br> mis habilidades y mantenerme al tanto de lo último en <br> desarrollo web.</p>
             </div>
         </div>
 

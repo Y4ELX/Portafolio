@@ -25,12 +25,10 @@
 
         ::-webkit-scrollbar-thumb {
         background-color: #0e1119; /* Color del pulgar (la parte móvil de la barra) */
-        border-radius: 6px; /* Borde redondeado del pulgar */
+        border-radius: 6vh; /* Borde redondeado del pulgar */
         }
 
-        ::-webkit-scrollbar-track {
-          /* Color de la pista (la parte fija de la barra) */
-        }
+
 
         /* Estilos para Firefox */
         /* Nota: Firefox utiliza una sola propiedad para estilizar la barra deslizante */
@@ -66,7 +64,7 @@
         box-sizing: border-box;
         padding: 0;
         margin:0;
-        background-color: white;
+        background-color: #151924;
         height: 100vh;
         }
 
@@ -101,8 +99,8 @@
             position: fixed;
             width: 100%;
             top: 0;
-            transition: top 0.3s;
-            
+            transition: top 0.2s;
+            background: linear-gradient(90deg, rgba(15,18,27,1) 0%, rgba(21,25,36,1) 30%);            z-index: 99;
             font-size: 20px;
             display: flex;
             flex-direction: row;
@@ -112,7 +110,8 @@
         }
         
         .navbar.hidden {
-            top: -60px;
+            transition: top 0.5s;
+            top: -80px;
         }
 
         .proy{
@@ -170,6 +169,7 @@
         #cursor {
             position: fixed;
             z-index: 100;
+            display: none;
             width: 2.8vh;
             height: 2.8vh;
             border-radius: 50%;
@@ -178,6 +178,17 @@
             pointer-events: none;
             transition: transform 0.2s ease-out;
             transform-origin: 50% 50%;
+        }
+        .iframeclass{
+            visibility: hidden;
+            opacity: 0;
+            transition: ease-in 2s;
+        }
+
+        .iframeclasshide{
+            visibility: visible;
+            opacity: 1;
+            transition: ease-in 2s;
         }
 
 </style>
@@ -188,7 +199,7 @@
  
         <div id="navbar" class="navbar">
             <div>
-                <button id="tocar5" onclick="window.open('index.html' , '_self')" style="cursor: none; background-repeat: no-repeat; background-size: contain; height: 100%; width: 50px; border: none; background-color: transparent; background-image: url(img/LOGOY.png);"></button>
+                <button id="tocar5" onclick="window.open('index.html' , '_self')" style="cursor: none; background-repeat: no-repeat; background-size: contain; height: 100%; width: 6vh; border: none; background-color: transparent; background-image: url(img/LOGOY.png);"></button>
             </div>
 
             <div style="display: flex; margin: 0px; width: 60%; display: flex; flex-direction: row; justify-content: flex-end; gap: 6vh; padding-right: 10vh;">
@@ -216,8 +227,8 @@
             </div>
         </div>
 
-        <div style="position: absolute; top: 13vh; left: 150vh;">
-            <iframe src="logoiframe.html" width="100%" height="500px" frameborder="0"></iframe>
+        <div id="iframeclass" class="iframeclass" style="position: absolute; top: 80px; right: 0vh; height: 100vh; width: 100vh;">
+            <iframe id="iframeid" src="logoiframe.html" width="100%" height="100%" frameborder="0"></iframe>
         </div>
 
 
@@ -227,7 +238,7 @@
                     Acerca de mí
                 </p>
                 <p style="margin: 0px; margin-right: 20%; color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.5em;">
-                        Tengo 18 años, actualmente estudio Ingeniería en Sistemas Computacionales y Electrónicos en <span onclick="window.open('https://www.une.edu.mx/')" style="cursor: pointer; font-weight: bold; color: #51e153;">Universidad del Noreste</span>, en mis estudios, me especializo en desarrollo frontend.
+                        Tengo <span id="edadYael"></span> años, actualmente estudio Ingeniería en Sistemas Computacionales y Electrónicos en <span onclick="window.open('https://www.une.edu.mx/')" style="cursor: pointer; font-weight: bold; color: #51e153;">Universidad del Noreste</span>, en mis estudios, me especializo en desarrollo frontend.
                     <!--                    <br><br>He completado mi educación en el nivel de preparatoria, obteniendo el título técnico en programación.
                     <br><br>-->
                     <br><br><br>
@@ -260,7 +271,32 @@
         </div>
 
 
+        <script>
+            const iframe = document.getElementById('iframeid');
+                const cursor = document.getElementById('cursor');
 
+            // Detectar cuando el cursor sale del área del iframe
+                document.addEventListener('mouseleave', function () {
+                    cursor.style.display = 'none'; // Ocultar el cursor cuando el cursor sale del área del iframe
+                });
+
+                // Detectar cuando el cursor entra en el área del iframe
+                document.addEventListener('mouseenter', function () {
+                    cursor.style.display = 'block'; // Mostrar el cursor cuando el cursor entra en el área del iframe
+                });
+                
+                // Detectar cuando el cursor sale del área del iframe
+                iframe.addEventListener('mouseleave', function () {
+                    cursor.style.display = 'block'; // Ocultar el cursor cuando el cursor sale del área del iframe
+                });
+
+                // Detectar cuando el cursor entra en el área del iframe
+                iframe.addEventListener('mouseenter', function () {
+                    cursor.style.display = 'none'; // Mostrar el cursor cuando el cursor entra en el área del iframe
+                });
+
+
+        </script>
 
 
             <!--CURSOOORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR-->
@@ -396,10 +432,20 @@
     <script>
         // Función para mostrar el elemento después de 5 segundos
         function mostrarElemento() {
-        var elemento = document.getElementById('nombre');
-        elemento.style.display = 'block';
+            var iframeclass = document.getElementById('iframeclass');
+            iframeclass.classList.add('iframeclasshide');
         }
-    
+
+        // Llama a la función después de 5000 milisegundos (5 segundos)
+        setTimeout(mostrarElemento, 3000);
+    </script>
+    <script>
+        // Función para mostrar el elemento después de 5 segundos
+        function mostrarElemento() {
+            var elemento = document.getElementById('nombre');
+            elemento.style.display = 'block';
+        }
+
         // Llama a la función después de 5000 milisegundos (5 segundos)
         setTimeout(mostrarElemento, 3000);
     </script>
@@ -413,5 +459,35 @@
         // Llama a la función después de 5000 milisegundos (5 segundos)
         setTimeout(mostrarElemento, 3000);
     </script>    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let edad = document.getElementById("edadYael");
+
+            const currentDate = new Date();
+
+            const ano = currentDate.getFullYear();
+            const mes = currentDate.getMonth() + 1;
+            const dia = currentDate.getDate();
+            
+            console.log("año: " + ano);
+            console.log("mes: " + mes);
+            console.log("dia: " + dia);
+
+            let yM = false;
+
+            if(mes>=4){
+                if(dia>=23){
+                    yM=true;
+                }
+            }
+
+            console.log(yM? ano - 2005 : ano - 2006)
+
+            edad.innerHTML=(yM? ano - 2005 : ano - 2006)
+
+
+        });
+    </script>
 
 </html>

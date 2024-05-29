@@ -6,8 +6,43 @@
     <title>Document</title>
 
     <style>
+                /*SCROLLBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRR*/
+        /* Estilos para navegadores basados en WebKit (Chrome, Safari) */
+        ::-webkit-scrollbar {
+        width: 12px; /* Ancho de la barra deslizante */
+        }
+
+        ::-webkit-scrollbar-thumb {
+        background-color: #0e1119; /* Color del pulgar (la parte móvil de la barra) */
+        border-radius: 6px; /* Borde redondeado del pulgar */
+        }
+
+        /* Estilos para Firefox */
+        /* Nota: Firefox utiliza una sola propiedad para estilizar la barra deslizante */
+        /* Establece el color del fondo de la barra deslizante en Firefox */
+        /* Estos estilos también afectarán a la barra deslizante en Edge e IE */
+        * {
+        scrollbar-color: #151924 #151924;
+        scrollbar-width: thin;
+        cursor: none;
+        }
+        
         body{
             cursor: none;
+        }
+
+                #cursor {
+            position: fixed;
+            z-index: 100;
+            width: 3.2vh;
+            display: none;
+            height: 3.2vh;
+            border-radius: 50%;
+            background-color: #51e153;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            transition: transform 0.2s ease-out;
+            transform-origin: 50% 50%;
         }
     </style>
 
@@ -27,7 +62,30 @@
     </style>
 </head>
 <body>
-    
+    <div id="cursor"></div>
 </body>
     <script type="module" src="./main.js"></script>
+
+                <!--CURSOOORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR-->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        
+                        document.addEventListener('mousemove', function (e) {
+                            const { clientX, clientY } = e;
+                            const cursorSize = 20;
+                            const cursorHalfSize = cursorSize / 8;
+                            const cursorX = clientX - cursorHalfSize;
+                            const cursorY = clientY - cursorHalfSize;
+
+                            cursor.style.left = `${cursorX}px`;
+                            cursor.style.top = `${cursorY}px`;
+                        });
+                    });
+                </script>
+
+                        <script>
+
+
+
+                        </script>
 </html>

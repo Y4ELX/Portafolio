@@ -1,4 +1,323 @@
-body{
-    background-color: #151924;
-    margin: 0;
-}
+        ::selection {
+            background: #51e153;
+            color: black;
+            border-radius: 1100px;
+        }
+
+        @font-face {
+            font-family: sailec;
+            src: url('/fonts/sailec.ttf') format('opentype');
+            /* Otros atributos opcionales como font-weight y font-style pueden ir aquí */
+        }
+
+        /*SCROLLBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRR*/
+        ::-webkit-scrollbar {
+            width: 12px;
+            /* Ancho de la barra deslizante */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #0e1119;
+            /* Color del pulgar (la parte móvil de la barra) */
+            border-radius: 6vh;
+            /* Borde redondeado del pulgar */
+        }
+
+
+
+        /* Estilos para Firefox */
+        /* Nota: Firefox utiliza una sola propiedad para estilizar la barra deslizante */
+        /* Establece el color del fondo de la barra deslizante en Firefox */
+        /* Estos estilos también afectarán a la barra deslizante en Edge e IE */
+        * {
+            scrollbar-color: #0e1018 #151924;
+            scrollbar-width: thin;
+            cursor: none;
+        }
+
+        /*TERMINAAAAAAAAAAAAA SCROLLBAAAAAAAAAAAAAAAAAAAAAARRR*/
+
+        #nombre {
+            display: none;
+            animation: nomanim 2s;
+            /* Animación de parpadeo */
+        }
+
+        #sobre {
+            display: none;
+            animation: sobanim 2s;
+            /* Animación de parpadeo */
+        }
+
+        #text::after {
+            content: '█';
+            /* Carácter del cursor */
+            display: inline-block;
+            animation: blink 1000ms infinite;
+            /* Animación de parpadeo */
+            animation-timing-function: step-start;
+        }
+
+
+        /*CURSOOOORRRRRRR TRAIL*/
+        body {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            background-color: #151924;
+            height: 100vh;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes nomanim {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes sobanim {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            height: 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            transition: top 0.2s;
+            background: linear-gradient(90deg, rgba(15, 18, 27, 1) 0%, rgba(21, 25, 36, 1) 30%);
+            z-index: 99;
+            font-size: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0px 20px 5vh;
+        }
+
+        .navbar.hidden {
+            transition: top 0.5s;
+            top: -80px;
+        }
+
+        .proy {
+            color: #51e153;
+            border: 2px solid #51e153;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: transparent;
+            font-family: monospace;
+            transition: 1s;
+        }
+
+        .proy:hover {
+            color: #151924;
+            transform: scale(1.1);
+            box-shadow: 0px 0px 15px #60e362;
+            background-color: #41e243;
+            transition: 0.5s;
+            font-weight: 900;
+        }
+
+        .botonindex {
+            margin-left: 0px;
+            color: #51e153;
+            border: 2px solid #51e153;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: transparent;
+            font-family: monospace;
+            transition: 1s;
+            font-size: 2em;
+        }
+
+        .botonindex:hover {
+            transform: scale(1.1);
+            color: black;
+            border: 2px solid #51e153;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #60e362;
+            background-color: #51e153;
+            transition: 0.5s;
+        }
+
+        .otros {
+            color: #d4d4d4;
+            font-size: 15px;
+            border: 2px solid transparent;
+            background-color: transparent;
+            font-family: monospace;
+            transition: ease-in-out 0.4s;
+        }
+
+        .otros:hover {
+            transform: translateY(3px);
+            transition: ease-in-out 0.4s;
+            color: #51e153;
+            border-bottom: 0.3vh solid #41e243;
+        }
+
+        #cursor {
+            position: fixed;
+            z-index: 100;
+            display: none;
+            width: 2.8vh;
+            height: 2.8vh;
+            border-radius: 50%;
+            background-color: #51e153;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            transition: transform 0.2s ease-out;
+            transform-origin: 50% 50%;
+        }
+
+        .iframeclass {
+            position: absolute;
+            top: 80px;
+            right: 0vh;
+            height: 100vh;
+            width: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: ease-in 2s;
+        }
+
+        .iframeclasshide {
+            visibility: visible;
+            opacity: 1;
+            transition: ease-in 2s;
+        }
+
+        .wppBtn {
+            z-index: 1;
+            transition: ease-in-out 0.4s;
+            background-image: url(img/wpp.png);
+            border: none;
+            border-radius: 100vh;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 8vh;
+            height: 8vh;
+        }
+
+        .wppBtn:hover {
+            transform: scale(1.2);
+            transition: ease-in-out 0.2s;
+        }
+
+        .hambMenu {
+            display: none;
+        }
+
+        .normalMenu {
+            display: flex;
+            margin: 0px;
+            width: 60%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: 6vh;
+            padding-right: 10vh;
+        }
+
+        .text {
+            color: #51e153;
+            font-family: monospace;
+            font-size: 3.5vh;
+            margin-bottom: 0;
+        }
+
+        .nombre{
+            color: #c4c8de;
+            font-family: sailec;
+            font-weight: bold;
+            font-size: 9.5vh;
+            margin: 0px;
+            margin-bottom: 3vh;
+        }
+
+        .sobre{
+            color: #7d8191;
+            text-align: justify;
+            text-justify: inter-word;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 3.5vh;
+            margin: 0px;
+        }
+
+        .containerIn2{
+            position: relative;
+            top: 20vh;
+            left: 25vh;
+            width: 40%;
+        }
+        @media only screen and (max-width: 1100px) {
+            #cursor{
+                visibility: hidden;
+            }
+            .iframeclass{
+                top: 50%;
+                height: 50vh;
+                width: 100vw;
+                right: unset;
+                left: 0;
+            }
+
+            .containerIn2{
+                top: 15vh;
+                left: 3vh;
+                width: 86vw;
+            }
+            .normalMenu {
+                display: none;
+            }
+
+            .text{
+                font-size: 2vh;
+            }
+
+            .nombre {
+                font-size: 3vh;
+                margin-bottom: 1vh;
+            }
+
+            .sobre {
+                font-size: 2vh;
+            }
+
+            .navbar {
+                height: 120px;
+                padding: 20px 0px 20px 2vh;
+            }
+
+            .navbar.hidden{
+                top: -170px;
+            }
+        }
+

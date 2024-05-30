@@ -34,9 +34,9 @@
                 #cursor {
             position: fixed;
             z-index: 100;
-            width: 3.2vh;
+            width: 2.8vh;
             display: none;
-            height: 3.2vh;
+            height: 2.8vh;
             border-radius: 50%;
             background-color: #51e153;
             mix-blend-mode: difference;
@@ -44,6 +44,13 @@
             transition: transform 0.2s ease-out;
             transform-origin: 50% 50%;
         }
+
+                @media only screen and (max-width: 1100px) {
+            #cursor{
+                visibility: hidden;
+            }
+        }
+        
     </style>
 
     <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>

@@ -130,13 +130,6 @@ let direction = 1; // 1 para subir, -1 para bajar
             camera.position.y += ((camera.position.y < -mouseY * 1) ? 0.05 : 0);
             camera.position.y -= ((camera.position.y > -mouseY * 1) ? 0.05 : 0);
 
-            console.log("IF");
-            console.log((mouseX * 2).toFixed(1));
-            console.log(camera.position.x.toFixed(1));
-            console.log("-------------------------------")
-            console.log((-mouseY * 1).toFixed(1));
-            console.log(camera.position.y.toFixed(1));
-
             // En tu bucle o donde necesites el movimiento
             if (mesh.position.y < -1 && direction === 1) {
                 mesh.position.y += 0.002; // o cualquier velocidad deseada
@@ -148,12 +141,6 @@ let direction = 1; // 1 para subir, -1 para bajar
                 direction = 1; // Cambiar la dirección una vez que alcanza el límite inferior
             }
         }else{
-            console.log("ELSE")
-            console.log((mouseX * 2).toFixed(1));
-            console.log(camera.position.x.toFixed(1));
-            console.log("////////////////////////////////")
-            console.log((-mouseY * 1).toFixed(1));
-            console.log(camera.position.y.toFixed(1));
 
             // En tu bucle o donde necesites el movimiento
             if (mesh.position.y < -1 && direction === 1) {
@@ -178,9 +165,6 @@ let direction = 1; // 1 para subir, -1 para bajar
 
 
         camera.lookAt(scene.position);
-
-        console.log("Rotación actual del mesh:", mesh.rotation.x, mesh.rotation.y, mesh.rotation.z);
-        console.log("Posición actual de la cámara:", camera.position.x, camera.position.y, camera.position.z);
 
         renderer.render(scene, camera);
     } else {
@@ -209,11 +193,6 @@ let direction = 1; // 1 para subir, -1 para bajar
         } else if (mesh.position.y <= -1.3 && direction === -1) {
             direction = 1; // Cambiar la dirección una vez que alcanza el límite inferior
         }
-
-
-
-        console.log("Rotación actual del mesh:", mesh.rotation.x, mesh.rotation.y, mesh.rotation.z);
-        console.log("Posición actual de la cámara:", camera.position.x, camera.position.y, camera.position.z);
 
         renderer.render(scene, camera);
     }

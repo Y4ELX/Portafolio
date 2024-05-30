@@ -2,243 +2,64 @@
     <head>
         <title>Yael Monterrubio</title>
         <link rel="icon" href="img/favicon.ico" type="image/ico">
+        <link rel="stylesheet" href="public/index.css">
     </head>
-
-    <style>
-        ::selection{
-            background: #51e153;
-            color: black;
-            border-radius: 1100px;
-        }
-
-        @font-face {
-            font-family: sailec;
-            src: url('fonts/sailec.ttf') format('opentype');
-            /* Otros atributos opcionales como font-weight y font-style pueden ir aquí */
-        }
-
-        /*SCROLLBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRR*/
-        /* Estilos para navegadores basados en WebKit (Chrome, Safari) */
-        ::-webkit-scrollbar {
-        width: 12px; /* Ancho de la barra deslizante */
-        }
-
-        ::-webkit-scrollbar-thumb {
-        background-color: #0e1119; /* Color del pulgar (la parte móvil de la barra) */
-        border-radius: 6vh; /* Borde redondeado del pulgar */
-        }
-
-
-
-        /* Estilos para Firefox */
-        /* Nota: Firefox utiliza una sola propiedad para estilizar la barra deslizante */
-        /* Establece el color del fondo de la barra deslizante en Firefox */
-        /* Estos estilos también afectarán a la barra deslizante en Edge e IE */
-        * {
-        scrollbar-color: #0e1018 #151924;
-        scrollbar-width: thin;
-        cursor: none;
-        }
-
-        /*TERMINAAAAAAAAAAAAA SCROLLBAAAAAAAAAAAAAAAAAAAAAARRR*/
-
-        #nombre{
-            display: none;
-            animation: nomanim 2s; /* Animación de parpadeo */
-        }
-        #sobre{
-            display: none;
-            animation: sobanim 2s; /* Animación de parpadeo */
-        }
-
-        #text::after {
-            content: '█'; /* Carácter del cursor */
-            display: inline-block;
-            animation: blink 1000ms infinite; /* Animación de parpadeo */
-            animation-timing-function: step-start; 
-        }
-
-
-        /*CURSOOOORRRRRRR TRAIL*/
-        body {
-        box-sizing: border-box;
-        padding: 0;
-        margin:0;
-        background-color: #151924;
-        height: 100vh;
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-        }
-
-        @keyframes nomanim {
-            0%{
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-        @keyframes sobanim {
-            0%{
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .navbar{
-            height: 40px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            transition: top 0.2s;
-            background: linear-gradient(90deg, rgba(15,18,27,1) 0%, rgba(21,25,36,1) 30%);            z-index: 99;
-            font-size: 20px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0px 20px 5vh ;
-        }
-        
-        .navbar.hidden {
-            transition: top 0.5s;
-            top: -80px;
-        }
-
-        .proy{
-            color: #51e153;
-            border: 2px solid #51e153;
-            border-radius: 10px; 
-            padding: 10px;
-            background-color: transparent;
-            font-family: monospace;
-            transition: 1s;           
-        }
-
-        .proy:hover{
-            color: #151924;
-            box-shadow: 0px 0px 15px #60e362;
-            background-color: #41e243;
-            transition: 0.5s;  
-            font-weight: 900;          
-        }
-
-        .botonindex{
-            margin-left: 20px;
-            color: #51e153;
-            border: 2px solid #51e153;
-            border-radius: 10px; 
-            padding: 20px;
-            background-color: transparent;
-            font-family: monospace;
-            font-size: 2em;
-        }
-        .botonindex:hover{
-            margin-left: 20px;
-            color: black;
-            border: 2px solid #51e153;
-            border-radius: 10px; 
-            padding: 20px;
-            background-color: #51e153;
-            font-family: monospace;
-            font-size: 2em;
-            transition: 0.5s;
-        }
-        .otros{
-            color: #d4d4d4;
-            border: 2px solid transparent;
-            background-color: transparent;
-            font-family: monospace;
-            transition: ease-in-out 0.4s;
-        }
-        .otros:hover{
-            transform: translateY(3px);
-            transition: ease-in-out 0.4s;
-            color: #51e153;
-        }
-
-        #cursor {
-            position: fixed;
-            z-index: 100;
-            display: none;
-            width: 2.8vh;
-            height: 2.8vh;
-            border-radius: 50%;
-            background-color: #51e153;
-            mix-blend-mode: difference;
-            pointer-events: none;
-            transition: transform 0.2s ease-out;
-            transform-origin: 50% 50%;
-        }
-        .iframeclass{
-            visibility: hidden;
-            opacity: 0;
-            transition: ease-in 2s;
-        }
-
-        .iframeclasshide{
-            visibility: visible;
-            opacity: 1;
-            transition: ease-in 2s;
-        }
-
-</style>
 
     <body style="margin: 0; padding: 0; width: 100%; background: linear-gradient(90deg, rgba(15,18,27,1) 0%, rgba(21,25,36,1) 30%); ">
 
         <div id="cursor"></div>
- 
+
+        <div onmouseover="cursorCH()" onmouseout="cursorNM()" onclick="window.open('https://wa.link/lq502m')" class="wppBtn" style="position: fixed; bottom: 3vh; right: 3vh;"></div>
+
         <div id="navbar" class="navbar">
             <div>
-                <button id="tocar5" onclick="window.open('index.html' , '_self')" style="cursor: none; background-repeat: no-repeat; background-size: contain; height: 100%; width: 6vh; border: none; background-color: transparent; background-image: url(img/LOGOY.png);"></button>
+                <button onmouseover="cursorCH()" onmouseout="cursorNM()" onclick="window.open('index.html' , '_self')" style="cursor: none; background-repeat: no-repeat; background-size: contain; height: 100%; width: 6vh; border: none; background-color: transparent; background-image: url(img/LOGOY.png);"></button>
             </div>
 
-            <div style="display: flex; margin: 0px; width: 60%; display: flex; flex-direction: row; justify-content: flex-end; gap: 6vh; padding-right: 10vh;">
-                <button onclick="scrollToAcerca()" id="tocar1" class="otros">
+            <div class="normalMenu">
+                <button onclick="scrollToAcerca()" onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
                     Acerca de mí
                 </button>
-                <button onclick="scrollToHabilidades()" id="tocar2" class="otros">
+                <button onclick="scrollToHabilidades()" onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
                     Habilidades
                 </button>
-                <button id="tocar3"| class="otros">
+                <button onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
                     Contacto
                 </button>
-                <button id="tocar4" class="proy">
+                <button onmouseover="cursorCH()" onmouseout="cursorNM()" id="tocar4" class="proy">
                     Proyectos
                 </button>
+            </div>
+
+            <!--HAMB------------------------------------------------------------------------------------->
+            <div class="hambMenu">
+                <i>
+
+                </i>
             </div>
 
         </div>
         <!--#67759c-->
         <div style="height: 100vh; padding-top: 40px;   display: flex; flex-direction: column; align-items: flex-start;">
-            <div style="position: relative; top: 20vh; left: 25vh;">
-                <p id="text" style="color: #51e153; font-family: monospace; font-size: 3.5vh; margin-bottom: 0;"></p>
-                <p id="nombre" style="color: #c4c8de; font-family: sailec; font-weight: bold; font-size: 9.5vh; margin: 0px; margin-bottom: 3vh;">Yael Monterrubio.</p>
-                <p id="sobre" style="color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 3.5vh; margin: 0px;">Soy desarrollador frontend con habilidades en HTML,<br> CSS y JavaScript. Siempre estoy buscando maneras de <br> mis habilidades y mantenerme al tanto de lo último en <br> desarrollo web.</p>
+            <div class="containerIn2">
+                <p id="text" class="text"></p>
+                <p id="nombre" class="nombre">Yael Monterrubio.</p>
+                <p id="sobre" class="sobre">Soy desarrollador frontend con habilidades en HTML, CSS y JavaScript. Siempre estoy buscando maneras de mis habilidades y mantenerme al tanto de lo último en desarrollo web.</p>
             </div>
         </div>
 
-        <div id="iframeclass" class="iframeclass" style="position: absolute; top: 80px; right: 0vh; height: 100vh; width: 100vh;">
+        <div id="iframeclass" class="iframeclass">
             <iframe id="iframeid" src="logoiframe.html" width="100%" height="100%" frameborder="0"></iframe>
         </div>
 
 
         <div>
-            <div style="padding-left: 20%; height: 100vh;  ">
+            <div style="padding-left: 20vh; height: 100vh;">
                 <p id="Acerca" style=" margin: 0;  margin-bottom: 30px;  padding-top: 16%; color: #c4c8de; font-family: sailec; font-weight: bold; font-size: 6vh; ">
                     Acerca de mí
                 </p>
                 <p style="margin: 0px; margin-right: 20%; color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.5em;">
-                        Tengo <span id="edadYael"></span> años, actualmente estudio Ingeniería en Sistemas Computacionales y Electrónicos en <span onclick="window.open('https://www.une.edu.mx/')" style="cursor: pointer; font-weight: bold; color: #51e153;">Universidad del Noreste</span>, en mis estudios, me especializo en desarrollo frontend.
+                        Tengo <span id="edadYael"></span> años, soy técnico en programación y actualmente estudio Ingeniería en Sistemas Computacionales y Electrónicos en <span onclick="window.open('https://www.une.edu.mx/')" style="cursor: pointer; font-weight: bold; color: #51e153;">Universidad del Noreste</span>, me especializo en desarrollo frontend.
                     <!--                    <br><br>He completado mi educación en el nivel de preparatoria, obteniendo el título técnico en programación.
                     <br><br>-->
                     <br><br><br>
@@ -298,61 +119,22 @@
 
         </script>
 
+                <script>
+                    const cursorr = document.getElementById('cursor');
+
+                    function cursorCH() {
+                        cursorr.style.transform = 'scale(0.5)';
+                    }
+
+                    function cursorNM() {
+                        cursorr.style.transform = 'scale(1  )';
+                    }
+                </script>
+
 
             <!--CURSOOORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR-->
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
-                const cursor = document.getElementById('cursor');
-                    const tocarButton1 = document.getElementById('tocar1');
-                    const tocarButton2 = document.getElementById('tocar2');
-                    const tocarButton3 = document.getElementById('tocar3');
-                    const tocarButton4 = document.getElementById('tocar4');
-                    const tocarButton5 = document.getElementById('tocar5');
-        
-                    tocarButton1.addEventListener('mouseover', () => {
-                        cursor.style.transform = 'scale(0.5)';
-                    });
-
-                    tocarButton1.addEventListener('mouseout', () => {
-                        cursor.style.transform = 'scale(1)';
-                    });
-                    
-                    /////////////////////////////////////////////////////////////////
-                    tocarButton2.addEventListener('mouseover', () => {
-                        cursor.style.transform = 'scale(0.5)';
-                    });
-
-                    tocarButton2.addEventListener('mouseout', () => {
-                        cursor.style.transform = 'scale(1)';
-                    });
-                    /////////////////////////////////////////////////////////////////
-
-                    tocarButton3.addEventListener('mouseover', () => {
-                        cursor.style.transform = 'scale(0.5)';
-                    });
-
-                    tocarButton3.addEventListener('mouseout', () => {
-                        cursor.style.transform = 'scale(1)';
-                    });
-                    /////////////////////////////////////////////////////////////////
-
-                    tocarButton4.addEventListener('mouseover', () => {
-                        cursor.style.transform = 'scale(0.5)';
-                    });
-
-                    tocarButton4.addEventListener('mouseout', () => {
-                        cursor.style.transform = 'scale(1)';
-                    });
-                    /////////////////////////////////////////////////////////////////
-
-                    tocarButton5.addEventListener('mouseover', () => {
-                        cursor.style.transform = 'scale(0.5)';
-                    });
-
-                    tocarButton5.addEventListener('mouseout', () => {
-                        cursor.style.transform = 'scale(1)';
-                    });
-                    /////////////////////////////////////////////////////////////////
 
                 document.addEventListener('mousemove', function (e) {
                     const { clientX, clientY } = e;
@@ -398,7 +180,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const textElement = document.getElementById('text');
-            const textContent = "Hola, mi nombre es";
+            const textContent = "Hola! mi nombre es";
             let index = 0;
 
             function writeText() {
@@ -484,10 +266,8 @@
 
             console.log(yM? ano - 2005 : ano - 2006)
 
-            edad.innerHTML=(yM? ano - 2005 : ano - 2006)
-
+            let numEdad = yM ? ano - 2005 : ano - 2006;
 
         });
     </script>
-
 </html>

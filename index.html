@@ -9,11 +9,11 @@
 
         <div id="cursor"></div>
 
-        <div onmouseover="cursorCH()" onmouseout="cursorNM()" onclick="window.open('https://wa.link/lq502m')" class="wppBtn" style="position: fixed; bottom: 3vh; right: 3vh;"></div>
+        <div onmouseover="cursorCH()" onmouseout="cursorNM()" onclick="window.open('https://wa.link/lq502m')" class="wppBtn"></div>
 
         <div id="navbar" class="navbar">
             <div>
-                <button onmouseover="cursorCH()" onmouseout="cursorNM()" onclick="window.open('index.html' , '_self')" style="cursor: none; background-repeat: no-repeat; background-size: contain; height: 100%; width: 6vh; border: none; background-color: transparent; background-image: url(img/LOGOY.png);"></button>
+                <button onmouseover="cursorCH()" onmouseout="cursorNM()" onclick="window.open('index.html' , '_self')" style="cursor: none; background-repeat: no-repeat; background-size: contain; height: 80%; width: 6vh; border: none; background-color: transparent; background-image: url(img/LOGOY.png);"></button>
             </div>
 
             <div class="normalMenu">
@@ -23,7 +23,7 @@
                 <button onclick="scrollToHabilidades()" onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
                     Habilidades
                 </button>
-                <button onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
+                <button onclick="window.open('https://wa.link/lq502m')" onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
                     Contacto
                 </button>
                 <button onmouseover="cursorCH()" onmouseout="cursorNM()" id="tocar4" class="proy">
@@ -33,18 +33,18 @@
 
             <!--HAMB------------------------------------------------------------------------------------->
             <div class="hambMenu">
-                <i>
-
-                </i>
+                <div class="menuItems" id="menuItems">
+                    <button>Holaaa</button>
+                </div>
             </div>
 
         </div>
         <!--#67759c-->
-        <div style="height: 100vh; padding-top: 40px;   display: flex; flex-direction: column; align-items: flex-start;">
+        <div class="containerIn1">
             <div class="containerIn2">
                 <p id="text" class="text"></p>
                 <p id="nombre" class="nombre">Yael Monterrubio.</p>
-                <p id="sobre" class="sobre">Soy desarrollador frontend con habilidades en HTML, CSS y JavaScript. Siempre estoy buscando maneras de mis habilidades y mantenerme al tanto de lo último en desarrollo web.</p>
+                <p id="sobre" class="sobre">Soy desarrollador frontend con habilidades en HTML, CSS y JavaScript. Siempre estoy buscando maneras de mejorar mis habilidades y mantenerme al tanto de lo último en desarrollo web.</p>
             </div>
         </div>
 
@@ -183,6 +183,8 @@
             const textContent = "Hola! mi nombre es";
             let index = 0;
 
+            navbar.classList.remove("hidden");
+
             function writeText() {
                 textElement.innerHTML = textContent.slice(0, index);
                 index++;
@@ -216,31 +218,17 @@
         function mostrarElemento() {
             var iframeclass = document.getElementById('iframeclass');
             iframeclass.classList.add('iframeclasshide');
+
+            var nombre = document.getElementById('nombre');
+            nombre.classList.add('nombrevisible');
+
+            var sobre = document.getElementById('sobre');
+            sobre.classList.add('sobrevisible');
         }
 
         // Llama a la función después de 5000 milisegundos (5 segundos)
         setTimeout(mostrarElemento, 3000);
     </script>
-    <script>
-        // Función para mostrar el elemento después de 5 segundos
-        function mostrarElemento() {
-            var elemento = document.getElementById('nombre');
-            elemento.style.display = 'block';
-        }
-
-        // Llama a la función después de 5000 milisegundos (5 segundos)
-        setTimeout(mostrarElemento, 3000);
-    </script>
-    <script>
-        // Función para mostrar el elemento después de 5 segundos
-        function mostrarElemento() {
-        var elemento = document.getElementById('sobre');
-        elemento.style.display = 'block';
-        }
-    
-        // Llama a la función después de 5000 milisegundos (5 segundos)
-        setTimeout(mostrarElemento, 3000);
-    </script>    
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

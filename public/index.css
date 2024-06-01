@@ -5,9 +5,8 @@
         }
 
         @font-face {
-            font-family: sailec;
-            src: url('fonts/sailec.ttf') format('truetype');
-            /* Otros atributos opcionales como font-weight y font-style pueden ir aquí */
+            font-family: 'sailec';
+            src: url('../../fonts/sailec.ttf') format('truetype');
         }
 
         /*SCROLLBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARRR*/
@@ -371,7 +370,7 @@
             font-size: 9.5vh;
             margin-bottom: 25px;
             color: #c4c8de;
-            font-family: sailec;
+            font-family: "sailec";
             font-weight: bold;
         }
 
@@ -379,7 +378,7 @@
             font-size: 9.5vh;
             margin-bottom: 25px;
             color: #c4c8de;
-            font-family: sailec;
+            font-family: "sailec";
             font-weight: bold;
         }
 

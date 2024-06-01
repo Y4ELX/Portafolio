@@ -111,7 +111,7 @@ let direction = 1; // 1 para subir, -1 para bajar
 
     setTimeout(function () {
         mesh.rotation.y = -1.6
-    }, 2700);
+    }, 2500);
 
     function animate() {
     requestAnimationFrame(animate);

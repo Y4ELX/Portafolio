@@ -6,7 +6,7 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x151924, 0);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(1);
 
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.VSMShadowMap;
@@ -65,7 +65,6 @@ loader.load('logoul.gltf', (gltf) => {
 
     scene.add(mesh);
 
-    document.getElementById('progress-container').style.display = 'none';
 }, (xhr) => {
     console.log(`loading ${xhr.loaded / xhr.total * 100}%`);
 }, (error) => {

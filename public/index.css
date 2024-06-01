@@ -129,6 +129,7 @@
         }
 
         .botonindex {
+            width: 30%;
             margin-left: 0px;
             color: #51e153;
             border: 2px solid #51e153;
@@ -274,7 +275,7 @@
             visibility: hidden;
         }
 
-        .sobre{
+        .sobre {
             color: #7d8191;
             text-align: justify;
             text-justify: inter-word;
@@ -283,6 +284,16 @@
             font-weight: 400;
             opacity: 0;
             visibility: hidden;
+            margin: 0px;
+        }
+
+        .acercade {
+            color: #7d8191;
+            text-align: justify;
+            text-justify: inter-word;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 3.5vh;
+            font-weight: 400;
             margin: 0px;
         }
 
@@ -303,12 +314,96 @@
             align-items: center;
         }
         
-        .containerIn2{
+        .containerIn2 {
             position: relative;
             left: 25vh;
             width: 40%;
         }
+
+        .containerHab{
+            width: 100%;
+            height: 70vh;
+            gap: 4vh;
+            justify-content: center;
+            margin-bottom: 10vh;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card{
+            width: 45vh;
+            display: flex;
+            padding: 3vh;
+            height: 29vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s ease-in-out;
+            border-radius: 3vh;
+            background-color: #0e101888;
+        }
+
+        .card:hover{
+            transform: scale(1.08);
+            transition: 0.3s ease-in-out;
+        }
+
+        .imgClass{
+            padding: 2vh;
+            border-radius: 5vh;
+            width: 20vh;
+            height: fit-content;
+        }
+
+        .containerIn4 {
+            position: relative;
+            left: 25vh;
+            width: 78%;
+        }
+
+        .containerIn5 {
+            position: relative;
+            left: 25vh;
+            width: 78%;
+        }
+
+        .acercaTitulo{
+            font-size: 9.5vh;
+            margin-bottom: 25px;
+            color: #c4c8de;
+            font-family: sailec;
+            font-weight: bold;
+        }
+
+        .habilidadesTitulo {
+            font-size: 9.5vh;
+            margin-bottom: 25px;
+            color: #c4c8de;
+            font-family: sailec;
+            font-weight: bold;
+        }
+
+
         @media only screen and (max-width: 1100px) {
+            .containerHab {
+                padding-top: 7vh;
+                gap: 4vh;
+                margin-bottom: 0px;
+            }
+
+            .card {
+                height: 15vh;
+                width: 10vh;
+            }
+
+            .card:hover {
+                transform: scale(1);
+            }
+
+            .imgClass {
+            border-radius: 3vh;
+                width: 10vh;
+            }
 
             .hambMenu{
                 display: flex;
@@ -332,11 +427,22 @@
                 align-items: flex-start;
             }
 
-            .containerIn2{
+            .containerIn2 {
                 top: 15vh;
                 left: 3vh;
                 width: 86vw;
             }
+
+            .containerIn4 {
+                left: 3vh;
+                width: 86vw;
+            }
+                        
+            .containerIn5{
+                left: 3vh;
+                width: 86vw;
+            }
+
             .normalMenu {
                 display: none;
             }
@@ -350,7 +456,21 @@
                 margin-bottom: 1vh;
             }
 
+            .acercaTitulo{
+                font-size: 3vh;
+                margin-bottom: 1vh;
+            }
+
+            .habilidadesTitulo{
+                font-size: 3vh;
+                margin-top: 2vh;
+            }
+
             .sobre {
+                font-size: 2vh;
+            }
+
+            .acercade {
                 font-size: 2vh;
             }
 

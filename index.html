@@ -26,7 +26,7 @@
                 <button onclick="window.open('https://wa.link/lq502m')" onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
                     Contacto
                 </button>
-                <button onmouseover="cursorCH()" onmouseout="cursorNM()" id="tocar4" class="proy">
+                <button onclick="window.open('https://github.com/Y4ELX')" onmouseover="cursorCH()" onmouseout="cursorNM()" id="tocar4" class="proy">
                     Proyectos
                 </button>
             </div>
@@ -34,7 +34,7 @@
             <!--HAMB------------------------------------------------------------------------------------->
             <div class="hambMenu">
                 <div class="menuItems" id="menuItems">
-                    <button>Holaaa</button>
+                    <button style="display: none;">Holaaa</button>
                 </div>
             </div>
 
@@ -53,40 +53,60 @@
         </div>
 
 
-        <div>
-            <div style="position: relative; left: 25vh; width: 40%; height: 100vh;">
-                <p id="Acerca" style=" margin: 0;  margin-bottom: 30px;  padding-top: 16%; color: #c4c8de; font-family: sailec; font-weight: bold; font-size: 6vh; ">
+        <div id="Acerca" class="containerIn1">
+            <div class="containerIn4">
+                <p class="acercaTitulo">
                     Acerca de mí
                 </p>
-                <p style="margin: 0px; margin-right: 20%; color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.5em;">
-                        Tengo <span id="edadYael"></span> años, soy técnico en programación y actualmente estudio Ingeniería en Sistemas Computacionales y Electrónicos en <span onclick="window.open('https://www.une.edu.mx/')" style="cursor: pointer; font-weight: bold; color: #51e153;">Universidad del Noreste</span>, me especializo en desarrollo frontend.
+                <p class="acercade">
+                        Tengo <span id="edadYael"></span> años, soy técnico en programación y actualmente estudio Ingeniería en Sistemas Computacionales y Electrónicos en la <span onclick="window.open('https://www.une.edu.mx/')" style="cursor: pointer; font-weight: bold; color: #51e153;">Universidad del Noreste</span>, me especializo en desarrollo frontend. Algunas de mis habilidades son:
                     <!--                    <br><br>He completado mi educación en el nivel de preparatoria, obteniendo el título técnico en programación.
                     <br><br>-->
                     <br><br><br>
                 </p>
-                <button onclick="scrollToHabilidades()" class="botonindex">
-                    Habilidades
-                </button>
+                <div style="flex-direction: column; display: flex; justify-content: center; align-items: center; width: 100%;">
+                    <button onclick="scrollToHabilidades()" class="botonindex">
+                        Ver mis habilidades
+                    </button>
+                </div>
             </div>
         </div>
 
         
-        <div>
-            <div style="padding-left: 20%; height: 100vh;  ">
-                <p id="Habilidades" style=" margin: 0;  margin-bottom: 30px;  padding-top: 10%; color: #c4c8de; font-family: sailec; font-weight: bold; font-size: 4em; ">
+        <div id="Habilidades" class="containerIn1">
+            <div class="containerIn5">
+                <p class="habilidadesTitulo">
                     Habilidades
                 </p>
-                <p style="margin: 0px; margin-right: 20%; color: #7d8191; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.5em;">
-                    Algunas de mis habilidades son:
-                    <br>
-                    <br>
-                    HTML<br>CSS<br>JavaScript<br>Android Studio<br>C#<br>Java<br>
-                    <!--                    <br><br>He completado mi educación en el nivel de preparatoria, obteniendo el título técnico en programación.
-                    <br><br>-->
-                    <br><br><br>
-                </p>
-                <div>
-                    e
+                
+                <div class="containerHab">
+                    
+                    <div  class="card" onmouseover="cursorCH()" onmouseout="cursorNM()">
+                        <img src="img/HTMLlogo.png" alt="" class="imgClass">
+                        <div>
+                            <p class="text" >HTML</p>
+                        </div>
+                    </div>
+                    
+                    <div  class="card" onmouseover="cursorCH()" onmouseout="cursorNM()">
+                        <img src="img/CSSlogo.png" alt="" class="imgClass">
+                        <p class="text" >CSS</p>
+                    </div>
+                    
+                    <div  class="card" onmouseover="cursorCH()" onmouseout="cursorNM()">
+                        <img src="img/JSlogo.png" alt="" class="imgClass">
+                        <div>
+                            <p class="text" >JavaScript</p>
+                        </div>
+                    </div>
+
+                    <div  class="card" onmouseover="cursorCH()" onmouseout="cursorNM()">
+                        <img src="img/THREEJSlogo.png" alt="" class="imgClass" style="border-radius: 0;">
+                        <div>
+                            <p class="text" >Three.js</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -206,11 +226,6 @@
             const acercaElement = document.getElementById('Habilidades');
             acercaElement.scrollIntoView({ behavior: 'smooth' });
         }
-
-        function scrollToContacto() {
-            const acercaElement = document.getElementById('Acerca');
-            acercaElement.scrollIntoView({ behavior: 'smooth' });
-        }
     </script>
 
     <script>
@@ -234,28 +249,21 @@
         document.addEventListener('DOMContentLoaded', function () {
             let edad = document.getElementById("edadYael");
 
+            const fechaNacimiento = new Date(2005, 3, 23); // Año, mes (0-11), día
+
             const currentDate = new Date();
+            const anoActual = currentDate.getFullYear();
+            const mesActual = currentDate.getMonth() + 1;
+            const diaActual = currentDate.getDate();
 
-            const ano = currentDate.getFullYear();
-            const mes = currentDate.getMonth() + 1;
-            const dia = currentDate.getDate();
-            
-            console.log("año: " + ano);
-            console.log("mes: " + mes);
-            console.log("dia: " + dia);
+            let edadYael = anoActual - fechaNacimiento.getFullYear();
 
-            let yM = false;
-
-            if(mes>=4){
-                if(dia>=23){
-                    yM=true;
-                }
+            // Verificar si ya ha pasado su cumpleaños de este año
+            if (mesActual < fechaNacimiento.getMonth() + 1 || (mesActual === fechaNacimiento.getMonth() + 1 && diaActual < fechaNacimiento.getDate())) {
+                edadYael--;
             }
 
-            console.log(yM? ano - 2005 : ano - 2006)
-
-            let numEdad = yM ? ano - 2005 : ano - 2006;
-
+            edad.innerHTML = edadYael;
         });
     </script>
 </html>

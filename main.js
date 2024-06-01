@@ -179,7 +179,9 @@ let direction = 1; // 1 para subir, -1 para bajar
 
         camera.lookAt(scene.position);
 
-        mesh.rotation.y += 0.008;
+        if(mesh.rotation){
+            mesh.rotation.y += 0.008;
+        }
         
 
         // En tu bucle o donde necesites el movimiento

@@ -6,7 +6,7 @@
 
         @font-face {
             font-family: sailec;
-            src: url("/fonts/sailec.ttf") format('opentype');
+            src: url("fonts/sailec.ttf") format('opentype');
             /* Otros atributos opcionales como font-weight y font-style pueden ir aquí */
         }
 
@@ -208,7 +208,7 @@
             right: 3vh;
             z-index: 1;
             transition: ease-in-out 0.4s;
-            background-image: url(/img/wpp.png);
+            background-image: url(img/wpp.png);
             border: none;
             border-radius: 100vh;
             background-color: transparent;
@@ -236,7 +236,7 @@
 
         .hambMenu {
             display: none;
-            background-image: url(/img/ham.png);
+            background-image: url(img/ham.png);
             background-repeat: no-repeat;
             background-size: contain;
             height: 90px;

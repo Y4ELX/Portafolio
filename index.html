@@ -1,0 +1,269 @@
+<html>
+    <head>
+        <title>Yael Monterrubio</title>
+        <link rel="icon" href="img/favicon.ico" type="image/ico">
+        <link rel="stylesheet" href="index.css">
+    </head>
+
+    <body style="margin: 0; padding: 0; width: 100%; background: linear-gradient(90deg, rgba(15,18,27,1) 0%, rgba(21,25,36,1) 30%); ">
+
+        <div id="cursor"></div>
+
+        <div onmouseover="cursorCH()" onmouseout="cursorNM()" onclick="window.open('https://wa.link/lq502m')" class="wppBtn"></div>
+
+        <div id="navbar" class="navbar">
+            <div>
+                <button onmouseover="cursorCH()" onmouseout="cursorNM()" onclick="window.open('index.html' , '_self')" style="cursor: none; background-repeat: no-repeat; background-size: contain; height: 80%; width: 6vh; border: none; background-color: transparent; background-image: url(img/LOGOY.png);"></button>
+            </div>
+
+            <div class="normalMenu">
+                <button onclick="scrollToAcerca()" onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
+                    Acerca de mí
+                </button>
+                <button onclick="scrollToHabilidades()" onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
+                    Habilidades
+                </button>
+                <button onclick="window.open('https://wa.link/lq502m')" onmouseover="cursorCH()" onmouseout="cursorNM()" class="otros">
+                    Contacto
+                </button>
+                <button onclick="window.open('https://github.com/Y4ELX')" onmouseover="cursorCH()" onmouseout="cursorNM()" id="tocar4" class="proy">
+                    Proyectos
+                </button>
+            </div>
+
+            <!--HAMB------------------------------------------------------------------------------------->
+            <div class="hambMenu">
+                <div class="menuItems" id="menuItems">
+                    <button style="display: none;">Holaaa</button>
+                </div>
+            </div>
+
+        </div>
+        <!--#67759c-->
+        <div class="containerIn1">
+            <div class="containerIn2">
+                <p id="text" class="text"></p>
+                <p id="nombre" class="nombre">Yael Monterrubio.</p>
+                <p id="sobre" class="sobre">Soy desarrollador frontend con habilidades en HTML, CSS y JavaScript. Siempre estoy buscando maneras de mejorar mis habilidades y mantenerme al tanto de lo último en desarrollo web.</p>
+            </div>
+        </div>
+
+        <div id="iframeclass" class="iframeclass">
+            <iframe id="iframeid" src="logoiframe.html" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+
+
+        <div id="Acerca" class="containerIn1">
+            <div class="containerIn4">
+                <p class="acercaTitulo">
+                    Acerca de mí
+                </p>
+                <p class="acercade">
+                        Tengo <span id="edadYael"></span> años, soy técnico en programación y actualmente estudio Ingeniería en Sistemas Computacionales y Electrónicos en la <span onclick="window.open('https://www.une.edu.mx/')" style="cursor: pointer; font-weight: bold; color: #51e153;">Universidad del Noreste</span>, me especializo en desarrollo frontend. Algunas de mis habilidades son:
+                    <!--                    <br><br>He completado mi educación en el nivel de preparatoria, obteniendo el título técnico en programación.
+                    <br><br>-->
+                    <br><br><br>
+                </p>
+                <div style="flex-direction: column; display: flex; justify-content: center; align-items: center; width: 100%;">
+                    <button onclick="scrollToHabilidades()" class="botonindex">
+                        Ver mis habilidades
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div id="Habilidades" class="containerIn1">
+            <div class="containerIn5">
+                <p class="habilidadesTitulo">
+                    Habilidades
+                </p>
+                
+                <div class="containerHab">
+                    
+                    <div  class="card" onmouseover="cursorCH()" onmouseout="cursorNM()">
+                        <img src="img/HTMLlogo.png" alt="" class="imgClass">
+                        <div>
+                            <p class="text" >HTML</p>
+                        </div>
+                    </div>
+                    
+                    <div  class="card" onmouseover="cursorCH()" onmouseout="cursorNM()">
+                        <img src="img/CSSlogo.png" alt="" class="imgClass">
+                        <p class="text" >CSS</p>
+                    </div>
+                    
+                    <div  class="card" onmouseover="cursorCH()" onmouseout="cursorNM()">
+                        <img src="img/JSlogo.png" alt="" class="imgClass">
+                        <div>
+                            <p class="text" >JavaScript</p>
+                        </div>
+                    </div>
+
+                    <div  class="card" onmouseover="cursorCH()" onmouseout="cursorNM()">
+                        <img src="img/THREEJSlogo.png" alt="" class="imgClass" style="border-radius: 0;">
+                        <div>
+                            <p class="text" >Three.js</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            const iframe = document.getElementById('iframeid');
+                const cursor = document.getElementById('cursor');
+
+            // Detectar cuando el cursor sale del área del iframe
+                document.addEventListener('mouseleave', function () {
+                    cursor.style.display = 'none'; // Ocultar el cursor cuando el cursor sale del área del iframe
+                });
+
+                // Detectar cuando el cursor entra en el área del iframe
+                document.addEventListener('mouseenter', function () {
+                    cursor.style.display = 'block'; // Mostrar el cursor cuando el cursor entra en el área del iframe
+                });
+                
+                // Detectar cuando el cursor sale del área del iframe
+                iframe.addEventListener('mouseleave', function () {
+                    cursor.style.display = 'block'; // Ocultar el cursor cuando el cursor sale del área del iframe
+                });
+
+                // Detectar cuando el cursor entra en el área del iframe
+                iframe.addEventListener('mouseenter', function () {
+                    cursor.style.display = 'none'; // Mostrar el cursor cuando el cursor entra en el área del iframe
+                });
+
+
+        </script>
+
+                <script>
+                    const cursorr = document.getElementById('cursor');
+
+                    function cursorCH() {
+                        cursorr.style.transform = 'scale(0.5)';
+                    }
+
+                    function cursorNM() {
+                        cursorr.style.transform = 'scale(1  )';
+                    }
+                </script>
+
+
+            <!--CURSOOORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR-->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+
+                document.addEventListener('mousemove', function (e) {
+                    const { clientX, clientY } = e;
+                    const cursorSize = 20;
+                    const cursorHalfSize = cursorSize / 8;
+                    const cursorX = clientX - cursorHalfSize;
+                    const cursorY = clientY - cursorHalfSize;
+            
+                    cursor.style.left = `${cursorX}px`;
+                    cursor.style.top = `${cursorY}px`;
+                });
+                });
+            </script>
+
+
+
+
+
+    </body>
+    <script>
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function () {
+            var currentScrollPos = window.pageYOffset;
+            var navbar = document.getElementById("navbar");
+
+            if (prevScrollpos > currentScrollPos) {
+                navbar.classList.remove("hidden");
+            } else {
+                navbar.classList.add("hidden");
+            }
+
+            prevScrollpos = currentScrollPos;
+        }
+    </script>
+    <!--SCROLLLLL-->
+    <script>
+        // Restablecer la posición de desplazamiento al principio al recargar la página
+        window.addEventListener('beforeunload', function () {
+          window.scrollTo(0, 0);
+        });
+      </script>
+    <!--ESCRITURAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const textElement = document.getElementById('text');
+            const textContent = "Hola! mi nombre es";
+            let index = 0;
+
+            navbar.classList.remove("hidden");
+
+            function writeText() {
+                textElement.innerHTML = textContent.slice(0, index);
+                index++;
+
+                if (index <= textContent.length) {
+                    setTimeout(writeText, 150);
+                }
+            }
+
+            writeText();
+        });
+
+        function scrollToAcerca() {
+            const acercaElement = document.getElementById('Acerca');
+            acercaElement.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToHabilidades() {
+            const acercaElement = document.getElementById('Habilidades');
+            acercaElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+    <script>
+        // Función para mostrar el elemento después de 5 segundos
+        function mostrarElemento() {
+            var iframeclass = document.getElementById('iframeclass');
+            iframeclass.classList.add('iframeclasshide');
+
+            var nombre = document.getElementById('nombre');
+            nombre.classList.add('nombrevisible');
+
+            var sobre = document.getElementById('sobre');
+            sobre.classList.add('sobrevisible');
+        }
+
+        // Llama a la función después de 5000 milisegundos (5 segundos)
+        setTimeout(mostrarElemento, 3000);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let edad = document.getElementById("edadYael");
+
+            const fechaNacimiento = new Date(2005, 3, 23); // Año, mes (0-11), día
+
+            const currentDate = new Date();
+            const anoActual = currentDate.getFullYear();
+            const mesActual = currentDate.getMonth() + 1;
+            const diaActual = currentDate.getDate();
+
+            let edadYael = anoActual - fechaNacimiento.getFullYear();
+
+            // Verificar si ya ha pasado su cumpleaños de este año
+            if (mesActual < fechaNacimiento.getMonth() + 1 || (mesActual === fechaNacimiento.getMonth() + 1 && diaActual < fechaNacimiento.getDate())) {
+                edadYael--;
+            }
+
+            edad.innerHTML = edadYael;
+        });
+    </script>
+</html>

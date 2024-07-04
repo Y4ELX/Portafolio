@@ -94,7 +94,7 @@
             width: 100%;
             top: 0;
             transition: top 0.2s;
-            background: linear-gradient(90deg, rgba(15, 18, 27, 1) 0%, rgba(21, 25, 36, 1) 30%);
+            background: linear-gradient(0deg, transparent 0%, rgba(21, 25, 36, 1) 30%);
             z-index: 99;
             font-size: 20px;
             display: flex;
@@ -334,7 +334,7 @@
             width: 45vh;
             display: flex;
             padding: 3vh;
-            height: 29vh;
+            height: 25vh;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -344,6 +344,32 @@
         }
 
         .card:hover{
+            transform: scale(1.08);
+            transition: 0.3s ease-in-out;
+        }
+
+        .cardProy {
+            width: 51vh;
+            display: flex;
+            padding: 0px;
+            flex-direction: column;
+            justify-content: top    ;
+            align-items: center;
+            transition: 0.3s ease-in-out;
+            border-radius: 3vh;
+            background-color: #0e101888;
+        }
+
+        .cardProy img{
+            border-radius: 3vh 3vh 0px 0px;
+        }
+
+        .cardProy p {
+            text-align: justify;
+            padding: 1.5vh 3vh 1.5vh 3vh;
+        }
+
+        .cardProy:hover {
             transform: scale(1.08);
             transition: 0.3s ease-in-out;
         }

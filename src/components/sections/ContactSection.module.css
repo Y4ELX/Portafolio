@@ -1,0 +1,52 @@
+.section {
+  padding: clamp(3rem, 9vw, 6rem) 0;
+}
+
+.inner {
+  width: min(1200px, calc(100% - 2.4rem));
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.contactCard {
+  text-decoration: none;
+  padding: 1.15rem;
+  display: grid;
+  gap: 0.4rem;
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contactCard:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border-soft));
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.contactCard span {
+  color: var(--text-subtle);
+  font-size: 0.84rem;
+  font-family: var(--font-mono);
+}
+
+.contactCard strong {
+  color: var(--text-primary);
+  font-size: 1.02rem;
+}
+
+.ctaWrap {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,24 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 22rem;
+  animation: reveal-canvas 980ms cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@keyframes reveal-canvas {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+    filter: saturate(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: saturate(1);
+  }
+}

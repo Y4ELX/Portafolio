@@ -1,0 +1,38 @@
+.section {
+  padding: clamp(3rem, 9vw, 6rem) 0;
+}
+
+.inner {
+  width: min(1200px, calc(100% - 2.4rem));
+  margin: 0 auto;
+}
+
+.contentCard {
+  padding: clamp(1.2rem, 3vw, 2rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.contentCard p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 75ch;
+}
+
+.contentCard strong {
+  color: var(--text-primary);
+}
+
+.contentCard a {
+  color: var(--accent-soft);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}

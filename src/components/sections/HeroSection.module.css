@@ -1,0 +1,119 @@
+.hero {
+  padding: clamp(2rem, 6vw, 4rem) 0 clamp(2.5rem, 10vw, 7rem);
+}
+
+.inner {
+  width: min(1200px, calc(100% - 2.4rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: clamp(1.4rem, 4vw, 3.2rem);
+}
+
+.copyBlock {
+  display: grid;
+  gap: 1rem;
+}
+
+.pretitle {
+  margin: 0;
+  color: var(--accent-soft);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.copyBlock h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.role {
+  margin: 0;
+  color: color-mix(in srgb, var(--accent) 72%, var(--text-primary));
+  font-size: clamp(1rem, 1.9vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.description {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 62ch;
+  line-height: 1.75;
+}
+
+.actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.quickFacts {
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.quickFacts li {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  background: color-mix(in srgb, var(--surface-base) 80%, transparent);
+  display: grid;
+  gap: 0.2rem;
+}
+
+.quickFacts strong {
+  font-size: 0.84rem;
+  color: var(--text-primary);
+}
+
+.quickFacts span {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--text-subtle);
+}
+
+.visualBlock {
+  position: relative;
+  min-height: clamp(20rem, 56vw, 35rem);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.glow {
+  position: absolute;
+  inset: auto -16% -58% -16%;
+  height: 70%;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--accent) 36%, transparent), transparent 68%);
+  filter: blur(26px);
+  z-index: -1;
+}
+
+@media (max-width: 1060px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .visualBlock {
+    min-height: 24rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .quickFacts {
+    grid-template-columns: 1fr;
+  }
+}

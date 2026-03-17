@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'Sailec';
+  src: url('/fonts/sailec.ttf') format('truetype');
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at 90% -6%, rgba(81, 225, 83, 0.18), transparent 36%),
+    radial-gradient(circle at -8% 36%, rgba(64, 112, 255, 0.13), transparent 30%),
+    linear-gradient(110deg, var(--bg-primary) 0%, var(--bg-secondary) 60%, #0f131d 100%);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: linear-gradient(rgba(125, 138, 169, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 138, 169, 0.04) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+section {
+  scroll-margin-top: 5.4rem;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 75%, #ffffff 20%);
+  color: #071109;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--surface-elevated) 65%, #0a0d13);
+  border: 2px solid color-mix(in srgb, var(--bg-primary) 82%, #000000);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--bg-primary) 85%, #000000);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

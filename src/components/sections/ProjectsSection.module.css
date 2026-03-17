@@ -1,0 +1,110 @@
+.section {
+  padding: clamp(3rem, 9vw, 6rem) 0;
+}
+
+.inner {
+  width: min(1200px, calc(100% - 2.4rem));
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 170px 1fr;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--accent) 38%, var(--border-soft));
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.featured {
+  position: relative;
+}
+
+.featured::before {
+  content: 'Destacado';
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
+  background: color-mix(in srgb, var(--bg-primary) 70%, transparent);
+  color: var(--accent-soft);
+  padding: 0.24rem 0.62rem;
+}
+
+.imageWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 62%),
+    linear-gradient(145deg, color-mix(in srgb, var(--surface-elevated) 80%, transparent), color-mix(in srgb, var(--surface-base) 90%, transparent));
+}
+
+.imageWrap img {
+  max-width: 8rem;
+  max-height: 8rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.95;
+}
+
+.cardBody {
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.cardBody h3 {
+  margin: 0;
+  font-size: 1.12rem;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+}
+
+.cardBody p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.actions {
+  margin-top: 0.15rem;
+  display: flex;
+  gap: 0.6rem;
+}
+
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

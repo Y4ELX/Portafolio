@@ -1,0 +1,48 @@
+.button {
+  --btn-ring: color-mix(in srgb, var(--accent) 35%, transparent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-decoration: none;
+  padding: 0.9rem 1.2rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--btn-ring);
+  outline-offset: 2px;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.primary {
+  color: var(--bg-primary);
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  border-color: color-mix(in srgb, var(--accent) 75%, #ffffff 20%);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.primary:hover {
+  box-shadow: 0 16px 35px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.ghost {
+  color: var(--text-primary);
+  border-color: var(--border-soft);
+  background-color: color-mix(in srgb, var(--surface-elevated) 65%, transparent);
+}
+
+.ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent-soft);
+}

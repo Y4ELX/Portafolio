@@ -6,8 +6,8 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
-        <span>© {year} Yael Monterrubio</span>
-        <span>Frontend Developer</span>
+        <span>{year} Yael Monterrubio</span>
+        <span>Developer</span>
       </div>
     </footer>
   );

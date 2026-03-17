@@ -1,20 +1,27 @@
 .navbar {
+  --nav-offset: 0px;
+  --nav-border: transparent;
+  --nav-bg: transparent;
+
   position: sticky;
   top: 0;
   z-index: 50;
-  transform: translateY(0);
-  transition: transform var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+  transform: translate3d(0, var(--nav-offset), 0);
+  background: var(--nav-bg);
+  border-bottom-color: var(--nav-border);
+  will-change: transform;
+  transition: none;
   border-bottom: 1px solid transparent;
 }
 
 .hidden {
   transform: translateY(calc(-100% - 1px));
+  transition: none;
 }
 
 .scrolled {
   border-bottom-color: var(--border-soft);
-  background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
-  backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--bg-primary) 92%, transparent);
 }
 
 .inner {

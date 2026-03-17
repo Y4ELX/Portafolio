@@ -1,110 +1,486 @@
 .section {
-  padding: clamp(3rem, 9vw, 6rem) 0;
+  --projects-primary: #4f7fff;
+  --projects-secondary: var(--accent);
+
+  position: relative;
+  padding: clamp(1.2rem, 3.2vw, 2rem) 0;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: clamp(-8rem, -10vw, -5.5rem) -22% auto;
+  height: clamp(280px, 40vw, 520px);
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 82% 22%, color-mix(in srgb, var(--projects-primary) 16%, transparent), transparent 76%),
+    radial-gradient(circle at 24% 88%, color-mix(in srgb, var(--projects-secondary) 12%, transparent), transparent 74%);
+  opacity: 0.42;
+  filter: blur(38px);
+  z-index: 0;
 }
 
 .inner {
+  position: relative;
+  z-index: 1;
   width: min(1200px, calc(100% - 2.4rem));
   margin: 0 auto;
 }
 
-.grid {
+.header {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 0.5rem;
+  max-width: 830px;
+  margin-bottom: 0.62rem;
 }
 
-.card {
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: 170px 1fr;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  border-color: color-mix(in srgb, var(--accent) 38%, var(--border-soft));
-  box-shadow: 0 18px 40px color-mix(in srgb, var(--accent) 14%, transparent);
-}
-
-.featured {
-  position: relative;
-}
-
-.featured::before {
-  content: 'Destacado';
-  position: absolute;
-  top: 0.8rem;
-  right: 0.8rem;
-  z-index: 2;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+.eyebrow {
+  margin: 0;
+  width: fit-content;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
-  background: color-mix(in srgb, var(--bg-primary) 70%, transparent);
-  color: var(--accent-soft);
-  padding: 0.24rem 0.62rem;
+  padding: 0.3rem 0.74rem;
+  border: 1px solid color-mix(in srgb, var(--projects-secondary) 40%, transparent);
+  color: color-mix(in srgb, var(--projects-secondary) 80%, #deffe2 20%);
+  background: color-mix(in srgb, var(--projects-secondary) 10%, transparent);
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  font-size: 0.71rem;
+  text-transform: uppercase;
 }
 
-.imageWrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 62%),
-    linear-gradient(145deg, color-mix(in srgb, var(--surface-elevated) 80%, transparent), color-mix(in srgb, var(--surface-base) 90%, transparent));
+.header h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.24rem, 1.9vw, 1.78rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
 }
 
-.imageWrap img {
-  max-width: 8rem;
-  max-height: 8rem;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  opacity: 0.95;
+.lead {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.48;
+  font-size: clamp(0.8rem, 0.92vw, 0.88rem);
+  max-width: 62ch;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
-.cardBody {
-  padding: 1rem;
+.showcase {
   display: grid;
-  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1.14fr) minmax(0, 1fr);
+  gap: 0.62rem;
+  align-items: stretch;
+  min-height: clamp(330px, 45vh, 410px);
+}
+
+.featuredCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  border: 1px solid color-mix(in srgb, var(--projects-primary) 22%, var(--border-soft));
+  background:
+    linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--surface-elevated) 88%, transparent),
+      color-mix(in srgb, var(--surface-base) 72%, transparent)
+    ),
+    radial-gradient(circle at 86% 0%, color-mix(in srgb, var(--projects-primary) 16%, transparent), transparent 56%);
+  display: grid;
+  grid-template-rows: clamp(126px, 14.5vw, 168px) 1fr;
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.featuredCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid color-mix(in srgb, var(--projects-secondary) 0%, transparent);
+  pointer-events: none;
+  transition: border-color var(--transition-base);
+}
+
+.featuredMedia {
+  position: relative;
+  overflow: hidden;
+}
+
+.featuredMedia::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 48%, rgba(8, 12, 20, 0.56) 100%);
+  pointer-events: none;
+}
+
+.featuredMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1);
+  transition: transform var(--transition-base), filter var(--transition-base);
+}
+
+.featuredBadge {
+  position: absolute;
+  top: 0.58rem;
+  left: 0.58rem;
+  z-index: 2;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--projects-secondary) 42%, transparent);
+  padding: 0.2rem 0.48rem;
+  color: color-mix(in srgb, var(--projects-secondary) 86%, #deffe2 14%);
+  background: color-mix(in srgb, var(--bg-primary) 70%, transparent);
+  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.featuredBody {
+  padding: 0.62rem 0.68rem 0.68rem;
+  display: grid;
+  gap: 0.46rem;
   align-content: start;
 }
 
-.cardBody h3 {
+.featuredBody h3 {
   margin: 0;
-  font-size: 1.12rem;
   color: var(--text-primary);
   font-family: var(--font-display);
+  font-size: clamp(0.98rem, 1.08vw, 1.16rem);
+  letter-spacing: -0.01em;
 }
 
-.cardBody p {
+.featuredBody p {
   margin: 0;
   color: var(--text-muted);
-  line-height: 1.7;
-  font-size: 0.95rem;
+  font-size: 0.76rem;
+  line-height: 1.38;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
-.stack {
+.secondaryGrid {
+  display: grid;
+  gap: 0.62rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  height: 100%;
+  min-height: 0;
+}
+
+.projectCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 11px;
+  border: 1px solid color-mix(in srgb, var(--projects-primary) 18%, var(--border-soft));
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, var(--surface-elevated) 88%, transparent),
+      color-mix(in srgb, var(--surface-base) 74%, transparent)
+    ),
+    radial-gradient(circle at 92% 0%, color-mix(in srgb, var(--projects-secondary) 10%, transparent), transparent 58%);
+  display: grid;
+  grid-template-columns: minmax(62px, 31%) 1fr;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  min-height: 0;
+}
+
+.projectMedia {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.projectMedia::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(0, 0, 0, 0.14) 100%);
+  pointer-events: none;
+}
+
+.projectMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform var(--transition-base), filter var(--transition-base);
+}
+
+.projectBody {
+  padding: 0.54rem 0.58rem 0.58rem;
+  display: grid;
+  gap: 0.36rem;
+  align-content: start;
+  min-height: 0;
+}
+
+.projectSummary {
+  margin: 0;
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--projects-primary) 36%, transparent);
+  color: color-mix(in srgb, var(--projects-primary) 78%, #cfdcff 22%);
+  background: color-mix(in srgb, var(--projects-primary) 10%, transparent);
+  font-size: 0.56rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.16rem 0.42rem;
+}
+
+.projectBody h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  line-height: 1.12;
+}
+
+.projectBody > p:not(.projectSummary) {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.69rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.stackList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.24rem;
+  max-height: 1.72rem;
+  overflow: hidden;
+}
+
+.stackList li {
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--projects-secondary) 30%, transparent);
+  color: color-mix(in srgb, var(--projects-secondary) 82%, #deffe2 18%);
+  background: color-mix(in srgb, var(--projects-secondary) 10%, transparent);
+  font-size: 0.53rem;
+  letter-spacing: 0.03em;
+  padding: 0.14rem 0.42rem;
+}
+
+.stackFeatured li {
+  font-size: 0.58rem;
+  padding: 0.16rem 0.44rem;
 }
 
 .actions {
-  margin-top: 0.15rem;
+  margin-top: 0.02rem;
   display: flex;
-  gap: 0.6rem;
+  flex-wrap: wrap;
+  gap: 0.34rem;
+}
+
+.actionsCompact {
+  gap: 0.28rem;
+}
+
+.actionButton {
+  min-height: 1.9rem;
+  min-width: 5.2rem;
+  padding: 0.46rem 0.74rem;
+  font-size: 0.72rem;
+  border-radius: 0.62rem;
+}
+
+.actionButtonCompact {
+  min-height: 1.72rem;
+  min-width: 4.5rem;
+  padding: 0.38rem 0.56rem;
+  font-size: 0.64rem;
+  border-radius: 0.56rem;
+}
+
+.githubMiniCard {
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--projects-secondary) 26%, var(--border-soft));
+  background:
+    linear-gradient(
+      136deg,
+      color-mix(in srgb, var(--surface-elevated) 90%, transparent),
+      color-mix(in srgb, var(--surface-base) 72%, transparent)
+    ),
+    radial-gradient(circle at 96% 8%, color-mix(in srgb, var(--projects-primary) 12%, transparent), transparent 60%);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.32rem 0.44rem;
+  align-content: start;
+  padding: 0.5rem;
+  min-height: 0;
+}
+
+.githubIconWrap {
+  width: 1.76rem;
+  height: 1.76rem;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--projects-primary) 34%, transparent);
+  background: color-mix(in srgb, var(--projects-primary) 16%, transparent);
+  color: color-mix(in srgb, var(--projects-primary) 88%, #d9e5ff 12%);
+}
+
+.githubIcon {
+  width: 0.86rem;
+  height: 0.86rem;
+}
+
+.githubBody {
+  display: grid;
+  gap: 0.16rem;
+  min-height: 0;
+}
+
+.githubEyebrow {
+  margin: 0;
+  color: color-mix(in srgb, var(--projects-secondary) 72%, #deffe2 28%);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.githubBody h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  font-family: var(--font-display);
+}
+
+.githubBody p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.66rem;
+  line-height: 1.28;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.githubAction {
+  grid-column: 1 / -1;
+  margin-top: 0.04rem;
+}
+
+.githubButton {
+  width: 100%;
+  justify-content: center;
+  min-height: 1.72rem;
+  padding: 0.38rem 0.54rem;
+  font-size: 0.64rem;
+  border-radius: 0.56rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .featuredCard:hover {
+    transform: translateY(-5px);
+    border-color: color-mix(in srgb, var(--projects-secondary) 34%, var(--border-soft));
+    box-shadow:
+      0 22px 40px rgba(0, 0, 0, 0.28),
+      0 12px 28px color-mix(in srgb, var(--projects-primary) 14%, transparent);
+  }
+
+  .featuredCard:hover::before {
+    border-color: color-mix(in srgb, var(--projects-secondary) 30%, transparent);
+  }
+
+  .featuredCard:hover .featuredMedia img {
+    transform: scale(1.035);
+    filter: saturate(1.04);
+  }
+
+  .projectCard:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--projects-primary) 34%, var(--border-soft));
+    box-shadow:
+      0 16px 28px rgba(0, 0, 0, 0.26),
+      0 8px 22px color-mix(in srgb, var(--projects-secondary) 12%, transparent);
+  }
+
+  .projectCard:hover .projectMedia img {
+    transform: scale(1.05);
+    filter: saturate(1.05);
+  }
 }
 
 @media (max-width: 1080px) {
-  .grid {
+  .showcase {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .secondaryGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 760px) {
-  .grid {
+  .section {
+    padding: clamp(1.9rem, 7vw, 3rem) 0;
+  }
+
+  .section::before {
+    inset: clamp(-6.2rem, -14vw, -4rem) -42% auto;
+    opacity: 0.34;
+  }
+
+  .showcase {
+    gap: 0.52rem;
+  }
+
+  .featuredCard {
+    grid-template-rows: clamp(150px, 44vw, 210px) 1fr;
+  }
+
+  .secondaryGrid {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .projectCard {
+    grid-template-columns: 1fr;
+  }
+
+  .projectMedia {
+    min-height: 150px;
+  }
+
+  .projectBody > p:not(.projectSummary),
+  .githubBody p {
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featuredCard,
+  .featuredCard::before,
+  .featuredMedia img,
+  .projectCard,
+  .projectMedia img {
+    transition: none;
   }
 }

@@ -27,25 +27,9 @@ export default function HeroSection() {
               Contactarme
             </Button>
           </div>
-
-          <ul className={styles.quickFacts}>
-            <li>
-              <strong>UI cuidada</strong>
-              <span>Dise�o visual con identidad propia</span>
-            </li>
-            <li>
-              <strong>3D moderno</strong>
-              <span>Escenas fluidas y optimizadas</span>
-            </li>
-            <li>
-              <strong>Arquitectura limpia</strong>
-              <span>Componentes mantenibles y escalables</span>
-            </li>
-          </ul>
         </div>
 
         <div className={styles.visualBlock}>
-          <div className={styles.glow} aria-hidden="true" />
           <LogoCanvas />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { navLinks } from '../../data/portfolioData';
 import { useNavbarVisibility } from '../../hooks/useNavbarVisibility';
 import { useActiveSection } from '../../hooks/useActiveSection';
@@ -16,8 +16,9 @@ function scrollToSection(id) {
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navbarRef = useRef(null);
   const activeSection = useActiveSection(sectionIds);
-  const { isHidden, isScrolled } = useNavbarVisibility();
+  useNavbarVisibility(navbarRef);
 
   useEffect(() => {
     const closeMenu = () => setMenuOpen(false);
@@ -26,7 +27,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`${styles.navbar} ${isHidden ? styles.hidden : ''} ${isScrolled ? styles.scrolled : ''}`.trim()}>
+    <header ref={navbarRef} className={styles.navbar}>
       <div className={styles.inner}>
         <button
           type="button"

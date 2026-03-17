@@ -1,8 +1,8 @@
 export const profile = {
   name: 'Yael Monterrubio',
-  role: 'Frontend Developer',
+  role: 'Developer',
   shortIntro:
-    'Construyo interfaces web modernas con foco en detalle visual, rendimiento y experiencias interactivas con 3D.',
+    'Me enfoco en crear experiencias web modernas que unen diseño, desarrollo y rendimiento, buscando siempre que cada proyecto sea visualmente atractivo, funcional y memorable.',
   longIntro:
     'Soy tecnico en programacion y estudiante de Ingenieria en Sistemas Computacionales y Electronicos en la Universidad del Noreste. Me especializo en frontend y estoy en evolucion constante para crear productos web mas rapidos, claros y memorables.',
   birthdate: '2005-04-23',
@@ -38,36 +38,59 @@ export const skillsByCategory = [
 
 export const projects = [
   {
-    title: 'Portafolio 3D Interactivo',
+    id: 'tampiguessr',
+    title: 'TAMPIGUESSR',
+    summary: 'Proyecto estrella',
     description:
-      'Rediseno de portafolio personal con arquitectura React, experiencia inmersiva con 3D y enfoque en rendimiento.',
-    stack: ['React', 'Three.js', 'R3F', 'CSS Modules'],
-    image: '/img/THREEJSlogo.png',
-    codeUrl: 'https://github.com/Y4ELX',
-    liveUrl: '#',
+      'Explora calles, avenidas y colonias de Tampico, Tamaulipas y demuestra que tan tampiqueno eres realmente.',
+    stack: ['React', 'Vite', 'Mapbox', 'Node.js'],
+    image: '/img/projects/tg.png',
+    githubUrl: 'https://github.com/Y4ELX',
+    demoUrl: '#',
     featured: true,
   },
   {
-    title: 'UI Landing de Alto Impacto',
-    description:
-      'Landing orientada a conversion con jerarquia visual fuerte, animaciones cuidadas y secciones modulares.',
-    stack: ['React', 'CSS', 'UX Writing'],
-    image: '/img/HTMLlogo.png',
-    codeUrl: 'https://github.com/Y4ELX',
-    liveUrl: '#',
+    id: 'willy',
+    title: 'Taller de Multiservicios Willy',
+    summary: 'Ecommerce sector automotriz',
+    description: 'Aplicacion para comprar productos en linea para el taller.',
+    stack: ['React', 'Firebase', 'CSS Modules'],
+    image: '/img/projects/tmwg.png',
+    githubUrl: 'https://github.com/Y4ELX',
+    demoUrl: '#',
     featured: false,
   },
   {
-    title: 'Panel Frontend Escalable',
-    description:
-      'Interfaz dashboard con componentes reutilizables, estados claros y base lista para crecimiento de producto.',
-    stack: ['React', 'State Management', 'Reusable UI'],
-    image: '/img/JSlogo.png',
-    codeUrl: 'https://github.com/Y4ELX',
-    liveUrl: '#',
+    id: 'interroute',
+    title: 'InterRoute',
+    summary: 'Cotizador internacional',
+    description: 'Sitio para cotizar envios internacionales.',
+    stack: ['React', 'TypeScript', 'API Integration'],
+    image: '/img/projects/interroute.jpg',
+    githubUrl: 'https://github.com/Y4ELX',
+    demoUrl: '#',
+    featured: false,
+  },
+  {
+    id: 'pcfolio',
+    title: 'PCFolio',
+    summary: 'Portafolio inmersivo',
+    description: 'Una experiencia web para mostrar mi portafolio de una forma mas dinamica.',
+    stack: ['React', 'Three.js', 'Motion Design'],
+    image: '/img/projects/pcfolio.jpg',
+    githubUrl: 'https://github.com/Y4ELX',
+    demoUrl: '#',
     featured: false,
   },
 ];
+
+export const projectsHub = {
+  title: 'Explora mas en GitHub',
+  description:
+    'Aqui publico avances, experimentos y versiones nuevas de mis proyectos. Si quieres ver mas codigo y proceso, este es el punto de entrada.',
+  url: 'https://github.com/Y4ELX',
+  cta: 'Ver perfil completo',
+};
 
 export const contactLinks = [
   {

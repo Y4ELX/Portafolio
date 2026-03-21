@@ -1,146 +1,154 @@
-import { SiGithub } from 'react-icons/si';
+import { useEffect, useState } from 'react';
+import { FiGithub } from 'react-icons/fi';
 import { projects, projectsHub } from '../../data/portfolioData';
 import Button from '../ui/Button';
 import GlassCard from '../ui/GlassCard';
 import styles from './ProjectsSection.module.css';
 
-function hasLink(url) {
-  return Boolean(url && url !== '#');
-}
+function StackBadges({ stack = [], featured = false }) {
+  const visibleStack = stack.slice(0, featured ? 3 : 2);
+  const hiddenCount = stack.length - visibleStack.length;
 
-function StackList({ stack, className = '' }) {
   return (
-    <ul className={`${styles.stackList} ${className}`.trim()} aria-label="Tecnologias principales">
-      {stack.map((tech) => (
+    <ul className={`${styles.stackList} ${featured ? styles.stackFeatured : ''}`.trim()}>
+      {visibleStack.map((tech) => (
         <li key={tech}>{tech}</li>
       ))}
+      {hiddenCount > 0 ? <li className={styles.stackMore}>+{hiddenCount}</li> : null}
     </ul>
   );
 }
 
-function ProjectActions({ project, compact = false }) {
-  const hasDemo = hasLink(project.demoUrl);
-  const buttonClass = compact ? styles.actionButtonCompact : styles.actionButton;
+function ProjectDescription({ project, featured = false, isExpanded = false, onToggle }) {
+  const threshold = featured ? 88 : 72;
+  const canExpand = project.description.length > threshold;
+  const summaryClass = featured ? styles.featuredDescription : styles.projectDescription;
+  const revealClass = `${styles.descriptionReveal} ${isExpanded ? styles.descriptionRevealOpen : ''}`.trim();
 
   return (
-    <div className={`${styles.actions} ${compact ? styles.actionsCompact : ''}`.trim()}>
-      <Button
-        as="a"
-        href={project.githubUrl}
-        target="_blank"
-        rel="noreferrer"
-        variant="ghost"
-        className={buttonClass}
-      >
-        GitHub
-      </Button>
-      {hasDemo ? (
-        <Button
-          as="a"
-          href={project.demoUrl}
-          target="_blank"
-          rel="noreferrer"
-          variant="primary"
-          className={buttonClass}
-        >
-          Demo
-        </Button>
-      ) : (
-        <Button as="button" type="button" variant="primary" disabled className={buttonClass}>
-          Demo pronto
-        </Button>
-      )}
+    <div className={styles.descriptionBlock}>
+      <p className={summaryClass}>{project.description}</p>
+
+      {canExpand ? (
+        <>
+          <button
+            type="button"
+            className={styles.descriptionToggle}
+            onClick={onToggle}
+            aria-expanded={isExpanded}
+            aria-label={`${isExpanded ? 'Ocultar' : 'Ver mas'} informacion de ${project.title}`}
+          >
+            {isExpanded ? 'Mostrar menos' : 'Ver mas'}
+          </button>
+
+          <div className={revealClass} aria-hidden={!isExpanded}>
+            <p>{project.description}</p>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }
 
-function FeaturedProjectCard({ project }) {
-  return (
-    <GlassCard className={styles.featuredCard}>
-      <div className={styles.featuredMedia}>
-        <span className={styles.featuredBadge}>{project.summary}</span>
-        <img src={project.image} alt={project.title} loading="lazy" />
-      </div>
-
-      <div className={styles.featuredBody}>
-        <h3>{project.title}</h3>
-        <p>{project.description}</p>
-        <StackList stack={project.stack} className={styles.stackFeatured} />
-        <ProjectActions project={project} />
-      </div>
-    </GlassCard>
-  );
-}
-
-function ProjectCard({ project }) {
-  return (
-    <GlassCard className={styles.projectCard}>
-      <div className={styles.projectMedia}>
-        <img src={project.image} alt={project.title} loading="lazy" />
-      </div>
-
-      <div className={styles.projectBody}>
-        <p className={styles.projectSummary}>{project.summary}</p>
-        <h3>{project.title}</h3>
-        <p>{project.description}</p>
-        <StackList stack={project.stack} />
-        <ProjectActions project={project} compact />
-      </div>
-    </GlassCard>
-  );
-}
-
-function GithubCard() {
-  return (
-    <GlassCard as="aside" className={styles.githubMiniCard}>
-      <div className={styles.githubIconWrap}>
-        <SiGithub className={styles.githubIcon} aria-hidden="true" focusable="false" />
-      </div>
-      <div className={styles.githubBody}>
-        <p className={styles.githubEyebrow}>Mas proyectos</p>
-        <h3>{projectsHub.title}</h3>
-        <p>{projectsHub.description}</p>
-      </div>
-      <div className={styles.githubAction}>
-        <Button
-          as="a"
-          href={projectsHub.url}
-          target="_blank"
-          rel="noreferrer"
-          variant="primary"
-          className={styles.githubButton}
-        >
-          {projectsHub.cta}
-        </Button>
-      </div>
-    </GlassCard>
-  );
-}
-
 export default function ProjectsSection() {
+  const [expandedProjectId, setExpandedProjectId] = useState(null);
   const featuredProject = projects.find((project) => project.featured) ?? projects[0];
-  const secondaryProjects = projects.filter((project) => project.id !== featuredProject?.id);
+  const secondaryProjects = projects.filter((project) => project.id !== featuredProject.id).slice(0, 3);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setExpandedProjectId(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
+
+  const toggleProjectDetails = (projectId) => {
+    setExpandedProjectId((prev) => (prev === projectId ? null : projectId));
+  };
+
+  if (!featuredProject) {
+    return null;
+  }
 
   return (
     <section id="projects" className={styles.section}>
       <div className={styles.inner}>
         <header className={styles.header}>
-          <p className={styles.eyebrow}>Proyectos Seleccionados</p>
-          <h2>Vitrina de productos con diseno, logica y ejecucion visual</h2>
+          <p className={styles.eyebrow}>Proyectos</p>
+          <h2>Estos son algunos de mis proyectos</h2>
           <p className={styles.lead}>
-            Cada proyecto responde a un objetivo real: interfaz clara, experiencia cuidada y tecnologia bien aplicada.
-            TAMPIGUESSR lidera esta seccion como proyecto insignia.
+            Vitrina de productos con enfoque visual moderno, decisiones tecnicas claras y ejecucion orientada a
+            rendimiento.
           </p>
         </header>
 
         <div className={styles.showcase}>
-          {featuredProject ? <FeaturedProjectCard project={featuredProject} /> : null}
+          <GlassCard className={styles.featuredCard}>
+            <div className={styles.featuredMedia}>
+              <img src={featuredProject.image} alt={featuredProject.title} loading="lazy" />
+              <span className={styles.featuredBadge}>{featuredProject.summary}</span>
+            </div>
+
+            <div className={styles.featuredBody}>
+              <h3>{featuredProject.title}</h3>
+              <ProjectDescription
+                project={featuredProject}
+                featured
+                isExpanded={expandedProjectId === featuredProject.id}
+                onToggle={() => toggleProjectDetails(featuredProject.id)}
+              />
+              <StackBadges stack={featuredProject.stack} featured />
+            </div>
+          </GlassCard>
 
           <div className={styles.secondaryGrid}>
             {secondaryProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <GlassCard key={project.id} className={styles.projectCard}>
+                <div className={styles.projectMedia}>
+                  <img src={project.image} alt={project.title} loading="lazy" />
+                </div>
+
+                <div className={styles.projectBody}>
+                  <p className={styles.projectSummary}>{project.summary}</p>
+                  <h3>{project.title}</h3>
+                  <ProjectDescription
+                    project={project}
+                    isExpanded={expandedProjectId === project.id}
+                    onToggle={() => toggleProjectDetails(project.id)}
+                  />
+                  <StackBadges stack={project.stack} />
+                </div>
+              </GlassCard>
             ))}
-            <GithubCard />
+
+            <GlassCard className={styles.githubMiniCard}>
+              <div className={styles.githubIconWrap} aria-hidden="true">
+                <FiGithub className={styles.githubIcon} />
+              </div>
+
+              <div className={styles.githubBody}>
+                <p className={styles.githubEyebrow}>GitHub</p>
+                <h3>{projectsHub.title}</h3>
+                <p>{projectsHub.description}</p>
+              </div>
+
+              <div className={styles.githubAction}>
+                <Button
+                  as="a"
+                  href={projectsHub.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  variant="primary"
+                  className={`${styles.actionButtonCompact} ${styles.githubButton}`.trim()}
+                >
+                  {projectsHub.cta}
+                </Button>
+              </div>
+            </GlassCard>
           </div>
         </div>
       </div>

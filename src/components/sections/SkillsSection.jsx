@@ -23,7 +23,7 @@ const SKILL_BLOCKS = [
   {
     id: 'frontend',
     title: 'Desarrollo Frontend',
-    summary: 'Base semantica y responsive para interfaces claras, rapidas y mantenibles.',
+    summary: '',
     items: [
       { name: 'HTML', icon: SiHtml5, hue: 22 },
       { name: 'CSS', icon: SiCss, hue: 205 },
@@ -80,8 +80,6 @@ const SKILL_BLOCKS = [
 ];
 
 export default function SkillsSection() {
-  const totalTech = SKILL_BLOCKS.reduce((acc, block) => acc + block.items.length, 0);
-
   return (
     <section id="skills" className={styles.section}>
       <div className={styles.inner}>
@@ -104,7 +102,7 @@ export default function SkillsSection() {
                 <span className={styles.clusterCount}>{block.items.length}</span>
               </div>
 
-              <p className={styles.clusterSummary}>{block.summary}</p>
+              {block.summary ? <p className={styles.clusterSummary}>{block.summary}</p> : null}
 
               <ul className={styles.badges} aria-label={block.title}>
                 {block.items.map((item) => (

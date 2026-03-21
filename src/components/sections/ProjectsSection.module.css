@@ -3,7 +3,7 @@
   --projects-secondary: var(--accent);
 
   position: relative;
-  padding: clamp(1.2rem, 3.2vw, 2rem) 0;
+  padding: clamp(0.9rem, 2.5vw, 1.6rem) 0;
   overflow: visible;
   isolation: isolate;
 }
@@ -31,9 +31,9 @@
 
 .header {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.42rem;
   max-width: 830px;
-  margin-bottom: 0.62rem;
+  margin-bottom: 0.52rem;
 }
 
 .eyebrow {
@@ -54,16 +54,16 @@
   margin: 0;
   color: var(--text-primary);
   font-family: var(--font-display);
-  font-size: clamp(1.24rem, 1.9vw, 1.78rem);
-  line-height: 1.06;
+  font-size: clamp(1.34rem, 2.2vw, 2rem);
+  line-height: 1.12;
   letter-spacing: -0.02em;
 }
 
 .lead {
   margin: 0;
   color: var(--text-muted);
-  line-height: 1.48;
-  font-size: clamp(0.8rem, 0.92vw, 0.88rem);
+  line-height: 1.62;
+  font-size: clamp(0.92rem, 1.04vw, 1.04rem);
   max-width: 62ch;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -76,7 +76,7 @@
   grid-template-columns: minmax(0, 1.14fr) minmax(0, 1fr);
   gap: 0.62rem;
   align-items: stretch;
-  min-height: clamp(330px, 45vh, 410px);
+  min-height: clamp(300px, 40vh, 370px);
 }
 
 .featuredCard {
@@ -92,7 +92,7 @@
     ),
     radial-gradient(circle at 86% 0%, color-mix(in srgb, var(--projects-primary) 16%, transparent), transparent 56%);
   display: grid;
-  grid-template-rows: clamp(126px, 14.5vw, 168px) 1fr;
+  grid-template-rows: clamp(168px, 16vw, 220px) 1fr;
   transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
@@ -145,9 +145,9 @@
 }
 
 .featuredBody {
-  padding: 0.62rem 0.68rem 0.68rem;
+  padding: 0.82rem 0.9rem 0.88rem;
   display: grid;
-  gap: 0.46rem;
+  gap: 0.58rem;
   align-content: start;
 }
 
@@ -155,19 +155,74 @@
   margin: 0;
   color: var(--text-primary);
   font-family: var(--font-display);
-  font-size: clamp(0.98rem, 1.08vw, 1.16rem);
+  font-size: clamp(1.08rem, 1.3vw, 1.36rem);
+  line-height: 1.16;
   letter-spacing: -0.01em;
 }
 
-.featuredBody p {
+.descriptionBlock {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.featuredDescription,
+.projectDescription {
   margin: 0;
   color: var(--text-muted);
-  font-size: 0.76rem;
-  line-height: 1.38;
+  line-height: 1.52;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+}
+
+.featuredDescription {
+  font-size: clamp(0.9rem, 1vw, 1.02rem);
+}
+
+.projectDescription {
+  font-size: clamp(0.84rem, 0.92vw, 0.94rem);
+}
+
+.descriptionToggle {
+  width: fit-content;
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: color-mix(in srgb, var(--projects-secondary) 82%, #d8ffe0 18%);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.descriptionToggle:hover {
+  color: color-mix(in srgb, var(--projects-secondary) 94%, #effff2 6%);
+}
+
+.descriptionReveal {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  margin-top: -0.08rem;
+  transition: max-height 320ms ease, opacity 240ms ease, margin-top 320ms ease;
+}
+
+.descriptionReveal p {
+  margin: 0;
+  font-size: clamp(0.76rem, 0.76vw, 0.84rem);
+  line-height: 1.52;
+  color: color-mix(in srgb, var(--text-muted) 86%, #d7def4);
+}
+
+.descriptionRevealOpen {
+  max-height: 5.8rem;
+  opacity: 1;
+  pointer-events: auto;
+  margin-top: 0.04rem;
 }
 
 .secondaryGrid {
@@ -192,7 +247,7 @@
     ),
     radial-gradient(circle at 92% 0%, color-mix(in srgb, var(--projects-secondary) 10%, transparent), transparent 58%);
   display: grid;
-  grid-template-columns: minmax(62px, 31%) 1fr;
+  grid-template-rows: clamp(80px, 8vw, 102px) 1fr;
   transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   min-height: 0;
 }
@@ -200,7 +255,6 @@
 .projectMedia {
   position: relative;
   overflow: hidden;
-  min-height: 100%;
 }
 
 .projectMedia::after {
@@ -215,14 +269,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   transform: scale(1);
   transition: transform var(--transition-base), filter var(--transition-base);
 }
 
 .projectBody {
-  padding: 0.54rem 0.58rem 0.58rem;
+  padding: 0.74rem 0.78rem 0.78rem;
   display: grid;
-  gap: 0.36rem;
+  gap: 0.5rem;
   align-content: start;
   min-height: 0;
 }
@@ -234,7 +289,7 @@
   border: 1px solid color-mix(in srgb, var(--projects-primary) 36%, transparent);
   color: color-mix(in srgb, var(--projects-primary) 78%, #cfdcff 22%);
   background: color-mix(in srgb, var(--projects-primary) 10%, transparent);
-  font-size: 0.56rem;
+  font-size: 0.66rem;
   font-family: var(--font-mono);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -245,19 +300,8 @@
   margin: 0;
   color: var(--text-primary);
   font-family: var(--font-display);
-  font-size: 0.84rem;
-  line-height: 1.12;
-}
-
-.projectBody > p:not(.projectSummary) {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.69rem;
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  font-size: 1rem;
+  line-height: 1.18;
 }
 
 .stackList {
@@ -266,8 +310,8 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.24rem;
-  max-height: 1.72rem;
+  gap: 0.3rem;
+  max-height: 1.9rem;
   overflow: hidden;
 }
 
@@ -276,14 +320,20 @@
   border: 1px solid color-mix(in srgb, var(--projects-secondary) 30%, transparent);
   color: color-mix(in srgb, var(--projects-secondary) 82%, #deffe2 18%);
   background: color-mix(in srgb, var(--projects-secondary) 10%, transparent);
-  font-size: 0.53rem;
+  font-size: 0.62rem;
   letter-spacing: 0.03em;
-  padding: 0.14rem 0.42rem;
+  padding: 0.18rem 0.5rem;
 }
 
 .stackFeatured li {
-  font-size: 0.58rem;
-  padding: 0.16rem 0.44rem;
+  font-size: 0.62rem;
+  padding: 0.18rem 0.5rem;
+}
+
+.stackMore {
+  color: color-mix(in srgb, var(--text-subtle) 82%, #d1daee);
+  border-color: color-mix(in srgb, var(--text-subtle) 26%, transparent);
+  background: color-mix(in srgb, var(--surface-elevated) 44%, transparent);
 }
 
 .actions {
@@ -306,11 +356,11 @@
 }
 
 .actionButtonCompact {
-  min-height: 1.72rem;
-  min-width: 4.5rem;
-  padding: 0.38rem 0.56rem;
-  font-size: 0.64rem;
-  border-radius: 0.56rem;
+  min-height: 1.96rem;
+  min-width: 5.3rem;
+  padding: 0.48rem 0.72rem;
+  font-size: 0.74rem;
+  border-radius: 0.58rem;
 }
 
 .githubMiniCard {
@@ -365,15 +415,15 @@
 .githubBody h3 {
   margin: 0;
   color: var(--text-primary);
-  font-size: 0.78rem;
+  font-size: 0.94rem;
   font-family: var(--font-display);
 }
 
 .githubBody p {
   margin: 0;
   color: var(--text-muted);
-  font-size: 0.66rem;
-  line-height: 1.28;
+  font-size: 0.8rem;
+  line-height: 1.46;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -388,9 +438,9 @@
 .githubButton {
   width: 100%;
   justify-content: center;
-  min-height: 1.72rem;
-  padding: 0.38rem 0.54rem;
-  font-size: 0.64rem;
+  min-height: 1.96rem;
+  padding: 0.48rem 0.66rem;
+  font-size: 0.74rem;
   border-radius: 0.56rem;
 }
 
@@ -424,6 +474,10 @@
     transform: scale(1.05);
     filter: saturate(1.05);
   }
+
+  .descriptionToggle:hover {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 1080px) {
@@ -453,7 +507,11 @@
   }
 
   .featuredCard {
-    grid-template-rows: clamp(150px, 44vw, 210px) 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .featuredMedia {
+    aspect-ratio: 16 / 8.4;
   }
 
   .secondaryGrid {
@@ -461,17 +519,114 @@
     grid-template-rows: none;
   }
 
-  .projectCard {
-    grid-template-columns: 1fr;
-  }
-
   .projectMedia {
-    min-height: 150px;
+    aspect-ratio: 16 / 8.8;
   }
 
-  .projectBody > p:not(.projectSummary),
+  .descriptionReveal p,
   .githubBody p {
     -webkit-line-clamp: 3;
+  }
+}
+
+@media (min-width: 1081px) and (max-height: 820px) {
+  .section {
+    padding: 0.58rem 0 0.8rem;
+  }
+
+  .header {
+    gap: 0.32rem;
+    margin-bottom: 0.42rem;
+  }
+
+  .header h2 {
+    font-size: clamp(1.14rem, 1.6vw, 1.5rem);
+  }
+
+  .lead {
+    font-size: 0.84rem;
+    line-height: 1.46;
+    -webkit-line-clamp: 2;
+  }
+
+  .showcase {
+    min-height: clamp(240px, 33vh, 286px);
+    gap: 0.48rem;
+  }
+
+  .featuredCard {
+    grid-template-rows: 132px 1fr;
+  }
+
+  .featuredBody {
+    padding: 0.46rem 0.5rem 0.5rem;
+    gap: 0.3rem;
+  }
+
+  .featuredBody h3 {
+    font-size: 1.02rem;
+  }
+
+  .featuredDescription {
+    font-size: 0.8rem;
+    line-height: 1.42;
+    -webkit-line-clamp: 1;
+  }
+
+  .secondaryGrid {
+    gap: 0.46rem;
+  }
+
+  .projectCard {
+    grid-template-rows: 72px 1fr;
+  }
+
+  .projectBody {
+    padding: 0.4rem 0.44rem 0.44rem;
+    gap: 0.24rem;
+  }
+
+  .projectBody h3 {
+    font-size: 0.9rem;
+  }
+
+  .projectDescription {
+    font-size: 0.76rem;
+    line-height: 1.3;
+    -webkit-line-clamp: 1;
+  }
+
+  .stackList {
+    gap: 0.2rem;
+    max-height: 1.3rem;
+  }
+
+  .stackList li {
+    font-size: 0.58rem;
+    padding: 0.12rem 0.34rem;
+  }
+
+  .actions {
+    gap: 0.24rem;
+  }
+
+  .actionButtonCompact {
+    min-height: 1.68rem;
+    min-width: 4rem;
+    padding: 0.3rem 0.48rem;
+    font-size: 0.66rem;
+    border-radius: 0.5rem;
+  }
+
+  .githubMiniCard {
+    gap: 0.24rem 0.34rem;
+    padding: 0.42rem;
+  }
+
+  .githubBody p {
+    font-size: 0.7rem;
+    line-height: 1.2;
+    -webkit-line-clamp: 1;
   }
 }
 
@@ -480,7 +635,8 @@
   .featuredCard::before,
   .featuredMedia img,
   .projectCard,
-  .projectMedia img {
+  .projectMedia img,
+  .descriptionReveal {
     transition: none;
   }
 }

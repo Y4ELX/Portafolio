@@ -89,7 +89,7 @@ export default function ProjectsSection() {
         <div className={styles.showcase}>
           <GlassCard className={styles.featuredCard}>
             <div className={styles.featuredMedia}>
-              <img src={featuredProject.image} alt={featuredProject.title} loading="lazy" />
+              <img src={featuredProject.image} alt={featuredProject.title} loading="lazy" decoding="async" />
               <span className={styles.featuredBadge}>{featuredProject.summary}</span>
             </div>
 
@@ -109,7 +109,7 @@ export default function ProjectsSection() {
             {secondaryProjects.map((project) => (
               <GlassCard key={project.id} className={styles.projectCard}>
                 <div className={styles.projectMedia}>
-                  <img src={project.image} alt={project.title} loading="lazy" />
+                  <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
                 </div>
 
                 <div className={styles.projectBody}>

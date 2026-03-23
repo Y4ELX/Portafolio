@@ -8,22 +8,6 @@
   isolation: isolate;
 }
 
-.section::before {
-  content: '';
-  position: absolute;
-  inset: clamp(-10.5rem, -14vw, -7.4rem) -22% auto;
-  height: clamp(320px, 44vw, 560px);
-  pointer-events: none;
-  background: radial-gradient(
-    74% 82% at 80% 34%,
-    color-mix(in srgb, var(--skills-primary) 12%, transparent),
-    transparent 80%
-  );
-  opacity: 0.26;
-  filter: blur(56px);
-  z-index: 0;
-}
-
 .inner {
   position: relative;
   z-index: 1;
@@ -86,8 +70,7 @@
       color-mix(in srgb, var(--surface-base) 66%, transparent)
     ),
     radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--skills-primary) 19%, transparent), transparent 55%);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
   padding: 0.7rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -145,7 +128,6 @@
     ),
     radial-gradient(circle at 84% 0%, color-mix(in srgb, var(--skills-secondary) 12%, transparent), transparent 52%);
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(8px);
   padding: 0.78rem 0.8rem 0.82rem;
   transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
@@ -261,7 +243,6 @@
   width: 0.88rem;
   height: 0.88rem;
   display: block;
-  filter: drop-shadow(0 2px 6px color-mix(in srgb, hsl(var(--badge-hue) 84% 58%) 30%, transparent));
 }
 
 .badgeName {
@@ -315,12 +296,7 @@
   .section {
     padding: clamp(2.3rem, 8vw, 3.6rem) 0 clamp(2.5rem, 8.6vw, 4rem);
   }
-
-  .section::before {
-    inset: clamp(-8.8rem, -18vw, -6rem) -44% auto;
-    opacity: 0.22;
-  }
-
+  
   .header {
     margin-bottom: 0.92rem;
   }

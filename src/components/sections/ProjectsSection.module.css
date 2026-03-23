@@ -8,20 +8,6 @@
   isolation: isolate;
 }
 
-.section::before {
-  content: '';
-  position: absolute;
-  inset: clamp(-8rem, -10vw, -5.5rem) -22% auto;
-  height: clamp(280px, 40vw, 520px);
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 82% 22%, color-mix(in srgb, var(--projects-primary) 16%, transparent), transparent 76%),
-    radial-gradient(circle at 24% 88%, color-mix(in srgb, var(--projects-secondary) 12%, transparent), transparent 74%);
-  opacity: 0.42;
-  filter: blur(38px);
-  z-index: 0;
-}
-
 .inner {
   position: relative;
   z-index: 1;
@@ -495,11 +481,6 @@
 @media (max-width: 760px) {
   .section {
     padding: clamp(1.9rem, 7vw, 3rem) 0;
-  }
-
-  .section::before {
-    inset: clamp(-6.2rem, -14vw, -4rem) -42% auto;
-    opacity: 0.34;
   }
 
   .showcase {

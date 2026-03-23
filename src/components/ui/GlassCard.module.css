@@ -5,5 +5,4 @@
     linear-gradient(135deg, color-mix(in srgb, var(--surface-elevated) 82%, transparent), color-mix(in srgb, var(--surface-base) 65%, transparent)),
     radial-gradient(circle at 85% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 42%);
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(10px);
 }

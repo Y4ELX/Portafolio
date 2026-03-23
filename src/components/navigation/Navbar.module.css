@@ -111,11 +111,6 @@
 
 .mobileMenu {
   display: none;
-  flex-direction: column;
-  gap: 0.45rem;
-  padding: 0 1.2rem 1rem;
-  border-top: 1px solid var(--border-soft);
-  background: color-mix(in srgb, var(--bg-primary) 92%, transparent);
 }
 
 @media (max-width: 920px) {
@@ -129,18 +124,29 @@
 
   .mobileMenu {
     display: flex;
-    max-height: 0;
-    overflow: hidden;
-    padding-top: 0;
-    padding-bottom: 0;
-    border-top-color: transparent;
-    transition: max-height var(--transition-base), padding var(--transition-base), border-color var(--transition-base);
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 1.2rem;
+    left: 1.2rem;
+    flex-direction: column;
+    gap: 0.45rem;
+    padding: 0.8rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 0.9rem;
+    background: color-mix(in srgb, var(--bg-primary) 92%, transparent);
+    box-shadow: 0 14px 30px color-mix(in srgb, var(--bg-primary) 20%, transparent);
+    opacity: 0;
+    transform: translateY(-4px);
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 120ms ease, transform 120ms ease, visibility 0s linear 120ms;
   }
 
   .mobileOpen {
-    max-height: 280px;
-    padding-top: 0.8rem;
-    padding-bottom: 1rem;
-    border-top-color: var(--border-soft);
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 120ms ease, transform 120ms ease;
   }
 }

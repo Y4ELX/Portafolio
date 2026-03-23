@@ -35,7 +35,7 @@ export default function Navbar() {
           onClick={() => scrollToSection('hero')}
           aria-label="Ir al inicio"
         >
-          <img src="/img/LOGOY.png" alt="Logo Yael Monterrubio" />
+          <img src="/img/LOGOY.png" alt="Logo Yael Monterrubio" decoding="async" />
         </button>
 
         <nav className={styles.desktopNav} aria-label="Navegacion principal">

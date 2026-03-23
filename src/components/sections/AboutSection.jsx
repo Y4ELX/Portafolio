@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import SectionHeader from '../ui/SectionHeader';
 import styles from './AboutSection.module.css';
 
@@ -12,10 +12,6 @@ const POLAROID_IMAGES = [
   { src: '/img/polaroid/uneverso.jpeg', alt: 'Foto personal 3', caption: 'Compartiendo mi carrera' },
   { src: '/img/polaroid/google.jpeg', alt: 'Foto personal 4', caption: 'Aprendiendo en Talent Land 2025' },
 ];
-
-function supportsFineHover() {
-  return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-}
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -64,9 +60,11 @@ export default function AboutSection() {
   const leaveTimerRef = useRef(null);
   const tiltRafRef = useRef(null);
   const latestPointerRef = useRef(null);
+  const fineHoverRef = useRef(false);
   const hoverSessionRef = useRef({ locked: false, index: null });
   const [ratios, setRatios] = useState(() => POLAROID_IMAGES.map(() => DEFAULT_RATIO));
   const [activePolaroid, setActivePolaroid] = useState(null);
+  const activePolaroidIndex = activePolaroid?.index ?? null;
   const randomRotations = useMemo(
     () => POLAROID_IMAGES.map(() => Number((Math.random() * 18 - 9).toFixed(2))),
     []
@@ -78,7 +76,7 @@ export default function AboutSection() {
   const stackText =
     'Disfruto construir proyectos completos que combinan diseño, lógica y funcionalidad, especialmente en desarrollo web y software. He trabajado con React, Angular, Firebase, JavaScript, TypeScript y Python para crear experiencias modernas, útiles y bien pensadas.';
 
-  const updateFocusPosition = (index) => {
+  const updateFocusPosition = useCallback((index) => {
     const slot = cardRefs.current[index];
     if (!slot) {
       return;
@@ -90,12 +88,23 @@ export default function AboutSection() {
     const translateX = targetX - (rect.left + rect.width / 2);
     const translateY = targetY - (rect.top + rect.height / 2);
 
-    setActivePolaroid((prev) => ({
-      index,
-      translateX,
-      translateY,
-    }));
-  };
+    setActivePolaroid((prev) => {
+      if (
+        prev &&
+        prev.index === index &&
+        Math.abs(prev.translateX - translateX) < 0.5 &&
+        Math.abs(prev.translateY - translateY) < 0.5
+      ) {
+        return prev;
+      }
+
+      return {
+        index,
+        translateX,
+        translateY,
+      };
+    });
+  }, []);
 
   const updateGroupTilt = (clientX, clientY) => {
     if (!visualRef.current) {
@@ -153,20 +162,53 @@ export default function AboutSection() {
   };
 
   useEffect(() => {
-    if (!activePolaroid) {
+    if (activePolaroidIndex === null) {
       return;
     }
 
-    const update = () => updateFocusPosition(activePolaroid.index);
+    let frameId = null;
+    const scheduleUpdate = () => {
+      if (frameId !== null) {
+        return;
+      }
 
-    window.addEventListener('resize', update, { passive: true });
-    window.addEventListener('scroll', update, { passive: true });
+      frameId = window.requestAnimationFrame(() => {
+        frameId = null;
+        updateFocusPosition(activePolaroidIndex);
+      });
+    };
+
+    window.addEventListener('resize', scheduleUpdate, { passive: true });
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
 
     return () => {
-      window.removeEventListener('resize', update);
-      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', scheduleUpdate);
+      window.removeEventListener('scroll', scheduleUpdate);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
     };
-  }, [activePolaroid]);
+  }, [activePolaroidIndex, updateFocusPosition]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return undefined;
+    }
+
+    const media = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const sync = () => {
+      fineHoverRef.current = media.matches;
+    };
+
+    sync();
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', sync);
+      return () => media.removeEventListener('change', sync);
+    }
+
+    media.addListener(sync);
+    return () => media.removeListener(sync);
+  }, []);
 
   useEffect(
     () => () => {
@@ -185,7 +227,7 @@ export default function AboutSection() {
 
     clearLeaveTimer();
 
-    if (!supportsFineHover()) {
+    if (!fineHoverRef.current) {
       return;
     }
 
@@ -206,7 +248,7 @@ export default function AboutSection() {
       return;
     }
 
-    if (!supportsFineHover()) {
+    if (!fineHoverRef.current) {
       return;
     }
 
@@ -269,6 +311,10 @@ export default function AboutSection() {
 
     const ratio = clamp(naturalWidth / naturalHeight, 0.62, 1.45);
     setRatios((prev) => {
+      if (Math.abs(prev[index] - ratio) < 0.01) {
+        return prev;
+      }
+
       const next = [...prev];
       next[index] = ratio;
       return next;
@@ -331,6 +377,7 @@ export default function AboutSection() {
                         src={image.src}
                         alt={image.alt}
                         loading="lazy"
+                        decoding="async"
                         onLoad={(event) => handleImageLoad(event, index)}
                       />
                     </div>

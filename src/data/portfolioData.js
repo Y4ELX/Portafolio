@@ -1,6 +1,6 @@
 export const profile = {
   name: 'Yael Monterrubio',
-  role: 'Developer',
+  role: 'Desarrollador',
   shortIntro:
     'Me enfoco en crear experiencias web modernas que unen diseño, desarrollo y rendimiento, buscando siempre que cada proyecto sea visualmente atractivo, funcional y memorable.',
   longIntro:
@@ -71,7 +71,7 @@ export const projects = [
     id: 'Be',
     title: 'Be Only The Brave',
     summary: 'Experiencia Web',
-    description: 'Cuestionario interactivo desarrollado para la campaña "Be Only The Brave".',
+    description: 'Experiencia móvil desarrollada para la campaña “Be Only The Brave”, diseñada para ofrecer una interacción dinámica y alineada con la identidad de la marca.',
     stack: ['LeafLet', 'Three.js', 'Motion Design'],
     image: '/img/projects/beOnlyTheBrave.png',
     githubUrl: 'https://github.com/Y4ELX',

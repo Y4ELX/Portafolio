@@ -131,9 +131,26 @@
       color-mix(in srgb, var(--surface-base) 70%, transparent)
     ),
     radial-gradient(circle at 84% 0%, color-mix(in srgb, var(--skills-secondary) 12%, transparent), transparent 52%);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.22);
   padding: 0.82rem 0.84rem 0.9rem;
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: paint;
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cluster::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--skills-secondary) 18%, transparent), transparent 58%),
+    linear-gradient(140deg, color-mix(in srgb, var(--skills-secondary) 8%, transparent), transparent 62%);
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 180ms ease, transform 180ms ease;
 }
 
 .cluster::after {
@@ -141,9 +158,10 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  border: 1px solid color-mix(in srgb, var(--skills-secondary) 0%, transparent);
+  border: 1px solid color-mix(in srgb, var(--skills-secondary) 28%, transparent);
   pointer-events: none;
-  transition: border-color var(--transition-base);
+  opacity: 0.2;
+  transition: opacity 180ms ease;
 }
 
 .clusterTop {
@@ -209,8 +227,11 @@
       color-mix(in srgb, var(--surface-base) 74%, transparent)
     ),
     radial-gradient(circle at 12% 50%, color-mix(in srgb, hsl(var(--badge-hue) 86% 56%) 26%, transparent), transparent 66%);
-  box-shadow: 0 8px 20px color-mix(in srgb, hsl(var(--badge-hue) 84% 58%) 18%, transparent);
-  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 4px 12px color-mix(in srgb, hsl(var(--badge-hue) 84% 58%) 12%, transparent);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: paint;
+  transition: transform 170ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .badge::before {
@@ -221,13 +242,25 @@
   background: linear-gradient(
     110deg,
     transparent 0%,
-    transparent 36%,
-    rgba(255, 255, 255, 0.2) 50%,
-    transparent 64%,
+    transparent 34%,
+    rgba(255, 255, 255, 0.16) 50%,
+    transparent 66%,
     transparent 100%
   );
-  transform: translateX(-125%);
-  transition: transform 620ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0;
+  transform: translateX(-18%);
+  transition: opacity 160ms ease, transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.badge::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(circle at 16% 50%, color-mix(in srgb, hsl(var(--badge-hue) 86% 56%) 20%, transparent), transparent 72%);
+  opacity: 0;
+  transition: opacity 160ms ease;
   pointer-events: none;
 }
 
@@ -258,25 +291,29 @@
 
 @media (hover: hover) and (pointer: fine) {
   .cluster:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--skills-secondary) 36%, var(--border-soft));
-    box-shadow:
-      0 16px 28px rgba(0, 0, 0, 0.3),
-      0 8px 20px color-mix(in srgb, var(--skills-primary) 12%, transparent);
+    transform: translate3d(0, -2px, 0);
+  }
+
+  .cluster:hover::before {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .cluster:hover::after {
-    border-color: color-mix(in srgb, var(--skills-secondary) 34%, transparent);
+    opacity: 0.9;
   }
 
   .badge:hover {
-    transform: translateY(-2px) scale(1.02);
-    border-color: color-mix(in srgb, hsl(var(--badge-hue) 86% 62%) 76%, var(--border-soft));
-    box-shadow: 0 10px 22px color-mix(in srgb, hsl(var(--badge-hue) 88% 62%) 34%, transparent);
+    transform: translate3d(0, -2px, 0) scale(1.015);
   }
 
   .badge:hover::before {
-    transform: translateX(135%);
+    opacity: 1;
+    transform: translateX(14%);
+  }
+
+  .badge:hover::after {
+    opacity: 1;
   }
 }
 
@@ -346,8 +383,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cluster,
+  .cluster::before,
+  .cluster::after,
   .badge,
-  .badge::before {
+  .badge::before,
+  .badge::after {
     transition: none;
   }
 }

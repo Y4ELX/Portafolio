@@ -10,7 +10,7 @@ import Cursor from '../ui/inverted-cursor';
 export default function MainLayout() {
   return (
     <>
-      <Cursor size={20}/>
+      <Cursor size={20} inverted />
       <Navbar />
       <main>
         <HeroSection />

@@ -19,18 +19,48 @@ export const Cursor: React.FC<CursorProps> = ({ size = 60, inverted = false, hov
   const [isInteractive, setIsInteractive] = useState(false);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return;
 
-    const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const canEnableCursor = hasFinePointer && !prefersReducedMotion;
+    const pointerMedia = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const motionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    if (!canEnableCursor) {
-      setEnabled(false);
+    const syncEnabledState = () => {
+      const canEnable = pointerMedia.matches && !motionMedia.matches && window.innerWidth > 1100;
+      setEnabled(canEnable);
+    };
+
+    syncEnabledState();
+    window.addEventListener('resize', syncEnabledState);
+
+    if (typeof pointerMedia.addEventListener === 'function') {
+      pointerMedia.addEventListener('change', syncEnabledState);
+      motionMedia.addEventListener('change', syncEnabledState);
+    } else {
+      pointerMedia.addListener(syncEnabledState);
+      motionMedia.addListener(syncEnabledState);
+    }
+
+    return () => {
+      window.removeEventListener('resize', syncEnabledState);
+      if (typeof pointerMedia.removeEventListener === 'function') {
+        pointerMedia.removeEventListener('change', syncEnabledState);
+        motionMedia.removeEventListener('change', syncEnabledState);
+      } else {
+        pointerMedia.removeListener(syncEnabledState);
+        motionMedia.removeListener(syncEnabledState);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) {
+      document.documentElement.classList.remove('cursor-hidden');
+      setVisible(false);
+      interactiveRef.current = false;
+      setIsInteractive(false);
       return;
     }
 
-    setEnabled(true);
     document.documentElement.classList.add('cursor-hidden');
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -43,9 +73,8 @@ export const Cursor: React.FC<CursorProps> = ({ size = 60, inverted = false, hov
       }
 
       if (cursorRef.current) {
-        const nextX = event.clientX - size / 2;
-        const nextY = event.clientY - size / 2;
-        cursorRef.current.style.transform = `translate3d(${nextX}px, ${nextY}px, 0)`;
+        cursorRef.current.style.left = `${event.clientX}px`;
+        cursorRef.current.style.top = `${event.clientY}px`;
       }
       setVisible(true);
     };
@@ -65,30 +94,28 @@ export const Cursor: React.FC<CursorProps> = ({ size = 60, inverted = false, hov
       interactiveRef.current = false;
       setIsInteractive(false);
     };
-  }, [size, hoverScale]);
+  }, [enabled]);
 
   if (!enabled) {
     return null;
   }
 
-  const cursorClasses = [styles.cursor, visible ? styles.visible : '']
-    .filter(Boolean)
-    .join(' ');
-
-  const cursorDotClasses = [styles.cursorDot, inverted ? styles.inverted : '', isInteractive ? styles.cursorSmall : '']
+  const cursorClasses = [
+    styles.cursor,
+    visible ? styles.visible : '',
+    inverted ? styles.inverted : '',
+    isInteractive ? styles.cursorSmall : '',
+  ]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <div className={styles.cursorLayer} aria-hidden="true">
-      <div
-        ref={cursorRef}
-        className={cursorClasses}
-        style={{ width: size, height: size, '--cursor-hover-scale': hoverScale } as React.CSSProperties}
-      >
-        <div className={cursorDotClasses} />
-      </div>
-    </div>
+    <div
+      ref={cursorRef}
+      className={cursorClasses}
+      style={{ width: size, height: size, '--cursor-hover-scale': hoverScale } as React.CSSProperties}
+      aria-hidden="true"
+    />
   );
 };
 

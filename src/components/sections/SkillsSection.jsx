@@ -1,4 +1,4 @@
-import styles from './SkillsSection.module.css';
+﻿import styles from './SkillsSection.module.css';
 import {
   SiAngular,
   SiArduino,
@@ -22,7 +22,7 @@ import {
 const SKILL_BLOCKS = [
   {
     id: 'frontend',
-    title: 'Desarrollo Frontend',
+    title: 'Frontend Core',
     items: [
       { name: 'HTML', icon: SiHtml5, hue: 22 },
       { name: 'CSS', icon: SiCss, hue: 205 },
@@ -32,7 +32,7 @@ const SKILL_BLOCKS = [
   },
   {
     id: 'frameworks',
-    title: 'Frameworks y Librerias',
+    title: 'Frameworks y UI',
     items: [
       { name: 'React', icon: SiReact, hue: 190 },
       { name: 'Angular', icon: SiAngular, hue: 350 },
@@ -42,7 +42,7 @@ const SKILL_BLOCKS = [
   },
   {
     id: 'logic',
-    title: 'Logica, Lenguajes y Datos',
+    title: 'Lógica y datos',
     items: [
       { name: 'Python', icon: SiPython, hue: 210 },
       { name: 'C#', icon: SiDotnet, hue: 236 },
@@ -52,7 +52,7 @@ const SKILL_BLOCKS = [
   },
   {
     id: 'workflow',
-    title: 'Flujo de Producto',
+    title: 'Herramientas de producto',
     items: [
       { name: 'Git', icon: SiGit, hue: 16 },
       { name: 'Figma', icon: SiFigma, hue: 332 },
@@ -60,7 +60,7 @@ const SKILL_BLOCKS = [
   },
   {
     id: 'interactive',
-    title: '3D e Interactivo',
+    title: '3D e interacción',
     items: [
       { name: 'Unity', icon: SiUnity, hue: 232 },
       { name: 'Blender', icon: SiBlender, hue: 32 },
@@ -68,7 +68,7 @@ const SKILL_BLOCKS = [
   },
   {
     id: 'hardware',
-    title: 'Hardware y Prototipado',
+    title: 'Hardware y prototipado',
     items: [{ name: 'Arduino', icon: SiArduino, hue: 168 }],
   },
 ];
@@ -79,10 +79,11 @@ export default function SkillsSection() {
       <div className={styles.inner}>
         <header className={styles.header}>
           <div className={styles.headerMain}>
-            <p className={styles.eyebrow}>Skills Architecture</p>
+            <p className={styles.eyebrow}>Stack profesional</p>
             <h2>Base técnica</h2>
             <p className={styles.lead}>
-              Habilidades conectadas para diseñar, desarrollar y dar forma a productos completos.
+              Mi stack combina desarrollo frontend, lógica, herramientas visuales e interacción para construir
+              experiencias funcionales y bien cuidadas.
             </p>
           </div>
         </header>

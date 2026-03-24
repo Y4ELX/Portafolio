@@ -45,10 +45,10 @@ function getAcademicStatus(now) {
   const isBeforeOrDuringAugust2026 = now < AUGUST_2026_END_EXCLUSIVE;
 
   if (isBeforeOrDuringAugust2026) {
-    return 'actualmente estoy por egresar de Ingenieria en Sistemas Computacionales y Electronicos';
+    return 'actualmente estoy por egresar de Ingeniería en Sistemas Computacionales y Electrónicos';
   }
 
-  return 'soy Ingeniero en Sistemas Computacionales y Electronicos';
+  return 'soy Ingeniero en Sistemas Computacionales y Electrónicos';
 }
 
 export default function AboutSection() {
@@ -79,16 +79,23 @@ export default function AboutSection() {
 
   const detailText = (
     <>
-      Desde muy pequeño me ha apasionado la tecnología, y con el tiempo esa curiosidad se convirtió en una forma de
-      crear, resolver problemas y dar vida a ideas a través del desarrollo.
+      Desde pequeño me ha apasionado la tecnología, y con el tiempo esa curiosidad se convirtió en una forma de crear
+      soluciones, resolver problemas y transformar ideas en experiencias digitales.
     </>
   );
 
   const stackText = (
     <>
-      Disfruto construir proyectos completos que combinan diseño, lógica y funcionalidad, especialmente en desarrollo
-      web y software. He trabajado con <strong>React, Angular, Firebase, JavaScript, TypeScript y Python</strong> para
-      crear experiencias modernas, útiles y bien pensadas.
+      Disfruto desarrollar proyectos completos que integran diseño, lógica y funcionalidad, con especial interés en
+      interfaces web modernas, experiencias interactivas y productos bien construidos de principio a fin. He trabajado
+      con <strong>React, Angular, Firebase, JavaScript, TypeScript y Python</strong>.
+    </>
+  );
+
+  const growthText = (
+    <>
+      Me interesa seguir creciendo en desarrollo frontend, experiencia de usuario y construcción de productos digitales
+      con identidad visual sólida.
     </>
   );
 
@@ -342,9 +349,10 @@ export default function AboutSection() {
       <div className={styles.inner}>
         <div className={styles.layout}>
           <div className={styles.textColumn}>
-            <SectionHeader eyebrow="ABOUT ME" title="Acerca de mi" description={introText} />
+            <SectionHeader eyebrow="Acerca de mí" title="Acerca de mí" description={introText} />
             <p className={styles.paragraph}>{detailText}</p>
             <p className={styles.paragraph}>{stackText}</p>
+            <p className={styles.paragraph}>{growthText}</p>
           </div>
 
           <div

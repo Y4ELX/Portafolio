@@ -8,6 +8,11 @@ import styles from './ProjectsSection.module.css';
 const ProjectCard = memo(function ProjectCard({ project }) {
   const stackPreview = project.stack.slice(0, 4);
   const isFeatured = project.id === 'tampiguessr';
+  const projectMeta = [
+    project.type ? `Tipo: ${project.type}` : null,
+    project.focus ? `Enfoque: ${project.focus}` : null,
+    project.role ? `Rol: ${project.role}` : null,
+  ].filter(Boolean);
 
   return (
     <GlassCard className={`${styles.projectCard} ${isFeatured ? styles.featuredCard : ''}`.trim()}>
@@ -22,8 +27,15 @@ const ProjectCard = memo(function ProjectCard({ project }) {
       <div className={styles.projectBody}>
         <h3>{project.title}</h3>
         <p className={styles.projectDescription}>{project.description}</p>
+        {projectMeta.length ? (
+          <ul className={styles.projectMeta} aria-label={`Contexto profesional de ${project.title}`}>
+            {projectMeta.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : null}
 
-        <ul className={styles.stackList} aria-label={`Tecnologias de ${project.title}`}>
+        <ul className={styles.stackList} aria-label={`Tecnologías de ${project.title}`}>
           {stackPreview.map((tech) => (
             <li key={tech}>{tech}</li>
           ))}
@@ -45,18 +57,17 @@ const ProjectCard = memo(function ProjectCard({ project }) {
 
         {project.githubUrl && (
           <Button
-          as="a"
-          href={project.githubUrl}
-          target="_blank"
-          rel="noreferrer"
-          variant="ghost"
-          className={styles.actionButton}
-        >
-          <FiGithub aria-hidden="true" />
-          Ver en GitHub
-        </Button>
+            as="a"
+            href={project.githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            variant="ghost"
+            className={styles.actionButton}
+          >
+            <FiGithub aria-hidden="true" />
+            Ver en GitHub
+          </Button>
         )}
-
       </div>
     </GlassCard>
   );
@@ -72,7 +83,7 @@ export default function ProjectsSection() {
           <p className={styles.eyebrow}>Proyectos</p>
           <h2>Estos son algunos de mis proyectos</h2>
           <p className={styles.lead}>
-            Vitrina de productos con enfoque visual moderno, decisiones tecnicas claras y ejecucion orientada a
+            Vitrina de productos con enfoque visual moderno, decisiones técnicas claras y ejecución orientada a
             rendimiento.
           </p>
         </header>

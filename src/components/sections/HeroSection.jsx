@@ -9,6 +9,20 @@ const PRETITLE_TEXT = 'Hola, mi nombre es';
 const PRETITLE_TYPE_SPEED_MS = 85;
 const NAME_REVEAL_SPEED_MS = 30;
 const NAME_REVEAL_DELAY_SECONDS = 2;
+const HERO_PILLARS = [
+  {
+    title: 'Interfaces modernas',
+    detail: 'Diseño visual con identidad y criterio.',
+  },
+  {
+    title: 'Desarrollo interactivo',
+    detail: 'Microinteracciones, motion y experiencias fluidas.',
+  },
+  {
+    title: 'Rendimiento cuidado',
+    detail: 'Productos optimizados para sentirse rápidos y sólidos.',
+  },
+];
 
 function scrollTo(sectionId) {
   const section = document.getElementById(sectionId);
@@ -43,7 +57,7 @@ export default function HeroSection() {
               |
             </span>
           </p>
-          <h1 style={{ width:"550px" }}>
+          <h1 style={{ width: '550px' }}>
             <SpecialText className={styles.nameReveal} speed={NAME_REVEAL_SPEED_MS} delay={NAME_REVEAL_DELAY_SECONDS}>
               {profile.name}
             </SpecialText>
@@ -59,6 +73,15 @@ export default function HeroSection() {
               Contactarme
             </Button>
           </div>
+
+          <ul className={styles.quickFacts} aria-label="Propuesta de valor profesional">
+            {HERO_PILLARS.map((pillar) => (
+              <li key={pillar.title}>
+                <strong>{pillar.title}</strong>
+                <span>{pillar.detail}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className={styles.visualBlock}>

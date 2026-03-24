@@ -1,10 +1,11 @@
+import { memo, useMemo } from 'react';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
 import { projects } from '../../data/portfolioData';
 import Button from '../ui/Button';
 import GlassCard from '../ui/GlassCard';
 import styles from './ProjectsSection.module.css';
 
-function ProjectCard({ project }) {
+const ProjectCard = memo(function ProjectCard({ project }) {
   const stackPreview = project.stack.slice(0, 4);
 
   return (
@@ -38,7 +39,8 @@ function ProjectCard({ project }) {
           Probar
         </Button>
 
-        <Button
+        {project.githubUrl && (
+          <Button
           as="a"
           href={project.githubUrl}
           target="_blank"
@@ -49,13 +51,15 @@ function ProjectCard({ project }) {
           <FiGithub aria-hidden="true" />
           Ver en GitHub
         </Button>
+        )}
+
       </div>
     </GlassCard>
   );
-}
+});
 
 export default function ProjectsSection() {
-  const visibleProjects = projects.slice(0, 9);
+  const visibleProjects = useMemo(() => projects.slice(0, 9), []);
 
   return (
     <section id="projects" className={styles.section}>

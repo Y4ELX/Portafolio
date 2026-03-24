@@ -4,13 +4,19 @@ import styles from './inverted-cursor.module.css';
 interface CursorProps {
   size?: number;
   inverted?: boolean;
+  hoverScale?: number;
 }
 
-export const Cursor: React.FC<CursorProps> = ({ size = 60, inverted = false }) => {
+const INTERACTIVE_SELECTOR =
+  'button, a, input, select, textarea, summary, label, [role="button"], [data-cursor="pointer"]';
+
+export const Cursor: React.FC<CursorProps> = ({ size = 60, inverted = false, hoverScale = 0.55 }) => {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const interactiveRef = useRef(false);
 
   const [enabled, setEnabled] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isInteractive, setIsInteractive] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -28,6 +34,14 @@ export const Cursor: React.FC<CursorProps> = ({ size = 60, inverted = false }) =
     document.documentElement.classList.add('cursor-hidden');
 
     const handleMouseMove = (event: MouseEvent) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const nextInteractive = Boolean(target?.closest(INTERACTIVE_SELECTOR));
+
+      if (interactiveRef.current !== nextInteractive) {
+        interactiveRef.current = nextInteractive;
+        setIsInteractive(nextInteractive);
+      }
+
       if (cursorRef.current) {
         const nextX = event.clientX - size / 2;
         const nextY = event.clientY - size / 2;
@@ -48,20 +62,32 @@ export const Cursor: React.FC<CursorProps> = ({ size = 60, inverted = false }) =
       window.removeEventListener('mouseenter', handleMouseEnter);
       window.removeEventListener('mouseleave', handleMouseLeave);
       document.documentElement.classList.remove('cursor-hidden');
+      interactiveRef.current = false;
+      setIsInteractive(false);
     };
-  }, [size]);
+  }, [size, hoverScale]);
 
   if (!enabled) {
     return null;
   }
 
-  const cursorClasses = [styles.cursor, inverted ? styles.inverted : '', visible ? styles.visible : '']
+  const cursorClasses = [styles.cursor, visible ? styles.visible : '']
+    .filter(Boolean)
+    .join(' ');
+
+  const cursorDotClasses = [styles.cursorDot, inverted ? styles.inverted : '', isInteractive ? styles.cursorSmall : '']
     .filter(Boolean)
     .join(' ');
 
   return (
     <div className={styles.cursorLayer} aria-hidden="true">
-      <div ref={cursorRef} className={cursorClasses} style={{ width: size, height: size }} />
+      <div
+        ref={cursorRef}
+        className={cursorClasses}
+        style={{ width: size, height: size, '--cursor-hover-scale': hoverScale } as React.CSSProperties}
+      >
+        <div className={cursorDotClasses} />
+      </div>
     </div>
   );
 };

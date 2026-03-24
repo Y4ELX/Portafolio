@@ -74,7 +74,11 @@
   display: grid;
   grid-template-rows: clamp(162px, 12vw, 196px) 1fr auto;
   min-height: 100%;
-  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  transform: translateZ(0);
+  will-change: transform;
+  contain: layout paint;
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 200ms ease;
 }
 
 .projectCard::before {
@@ -82,14 +86,29 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  border: 1px solid color-mix(in srgb, var(--projects-secondary) 0%, transparent);
+  border: 1px solid color-mix(in srgb, var(--projects-secondary) 36%, transparent);
+  opacity: 0;
+  z-index: 1;
   pointer-events: none;
-  transition: border-color var(--transition-base);
+  transition: opacity 200ms ease;
+}
+
+.projectCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 85% 4%, color-mix(in srgb, var(--projects-secondary) 16%, transparent), transparent 58%);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
 }
 
 .projectMedia {
   position: relative;
   overflow: hidden;
+  z-index: 0;
 }
 
 .projectMedia::after {
@@ -105,8 +124,9 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transform: scale(1);
-  transition: transform var(--transition-base), filter var(--transition-base);
+  transform: translateZ(0) scale(1);
+  will-change: transform;
+  transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .projectSummary {
@@ -123,6 +143,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 0.22rem 0.5rem;
+  z-index: 2;
 }
 
 .projectBody {
@@ -130,6 +151,7 @@
   display: grid;
   gap: 0.58rem;
   align-content: start;
+  z-index: 1;
 }
 
 .projectBody h3 {
@@ -171,10 +193,11 @@
 }
 
 .actions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-direction: row;
   gap: 0.42rem;
   padding: 0 0.9rem 0.9rem;
+  z-index: 1;
 }
 
 .actionButton {
@@ -183,24 +206,32 @@
   font-size: 0.72rem;
   border-radius: 0.6rem;
   padding: 0.44rem 0.56rem;
+  box-shadow: none !important;
+  transition: transform 150ms ease, border-color 150ms ease, color 150ms ease, background-color 150ms ease;
+  will-change: transform;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .projectCard:hover {
-    transform: translateY(-5px);
+    transform: translate3d(0, -4px, 0);
     border-color: color-mix(in srgb, var(--projects-primary) 36%, var(--border-soft));
-    box-shadow:
-      0 18px 34px rgba(0, 0, 0, 0.28),
-      0 10px 24px color-mix(in srgb, var(--projects-secondary) 12%, transparent);
   }
 
   .projectCard:hover::before {
-    border-color: color-mix(in srgb, var(--projects-secondary) 30%, transparent);
+    opacity: 1;
+  }
+
+  .projectCard:hover::after {
+    opacity: 1;
   }
 
   .projectCard:hover .projectMedia img {
-    transform: scale(1.06);
-    filter: saturate(1.06);
+    transform: translateZ(0) scale(1.03);
+  }
+
+  .actionButton:hover {
+    transform: translateY(-1px);
+    box-shadow: none !important;
   }
 }
 
@@ -240,7 +271,9 @@
 @media (prefers-reduced-motion: reduce) {
   .projectCard,
   .projectCard::before,
-  .projectMedia img {
+  .projectCard::after,
+  .projectMedia img,
+  .actionButton {
     transition: none;
   }
 }

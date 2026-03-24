@@ -7,7 +7,7 @@
 }
 
 .inner {
-  width: min(1200px, calc(100% - 2.4rem));
+  width: min(var(--content-max-width), calc(100% - var(--content-gutter)));
   margin: 0 auto;
 }
 
@@ -21,7 +21,7 @@
   --contact-hue: 180;
 
   text-decoration: none;
-  padding: 1rem 1.05rem;
+  padding: 1.02rem 1.05rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -90,7 +90,48 @@
 }
 
 @media (max-width: 1000px) {
+  .section {
+    min-height: auto;
+    align-items: flex-start;
+    padding: clamp(3.8rem, 11vw, 4.8rem) 0 clamp(2.8rem, 8vw, 3.8rem);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .contactCard {
+    min-height: 3.7rem;
+    padding: 0.9rem 0.92rem;
+  }
+
+  .iconWrap {
+    width: 1.95rem;
+    height: 1.95rem;
+  }
+
+  .copy strong {
+    font-size: 0.92rem;
+  }
+
+  .copy span {
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .contactCard {
+    grid-template-columns: auto 1fr;
+  }
+
+  .arrowWrap {
+    display: none;
   }
 }

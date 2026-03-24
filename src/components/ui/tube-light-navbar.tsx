@@ -22,6 +22,9 @@ export function NavBar({ items, className, activeTab: activeTabProp, onTabChange
   const [internalActiveTab, setInternalActiveTab] = useState(items[0]?.name ?? '');
   const [isMobile, setIsMobile] = useState(false);
   const activeTab = isControlled ? (activeTabProp ?? items[0]?.name ?? '') : internalActiveTab;
+  const lampTransition = isMobile
+    ? { type: 'spring', stiffness: 110, damping: 28, mass: 1.25 }
+    : { type: 'spring', stiffness: 165, damping: 26, mass: 1.1 };
 
   useEffect(() => {
     if (isControlled || items.length === 0) return;
@@ -70,7 +73,7 @@ export function NavBar({ items, className, activeTab: activeTabProp, onTabChange
                   layoutId="tube-lamp"
                   className={styles.lamp}
                   initial={false}
-                  transition={{ type: 'spring', stiffness: 170, damping: 26, mass: 1.15 }}
+                  transition={lampTransition}
                 >
                   <div className={styles.lampTop}>
                     <div className={styles.glowWide} />

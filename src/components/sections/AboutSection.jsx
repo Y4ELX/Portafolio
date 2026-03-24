@@ -297,22 +297,11 @@ export default function AboutSection() {
     resetGroupTilt();
   };
 
-  const handleSlotPointerDown = (event, index) => {
-    if (event.pointerType === 'mouse') {
-      return;
-    }
-
-    if (activePolaroid?.index === index) {
-      setActivePolaroid(null);
-      hoverSessionRef.current = { locked: false, index: null };
-      return;
-    }
-
-    hoverSessionRef.current = { locked: true, index };
-    updateFocusPosition(index);
-  };
-
   const handleColumnPointerDown = (event) => {
+    if (event.pointerType !== 'mouse') {
+      return;
+    }
+
     const target = event.target;
     if (!(target instanceof Element)) {
       return;
@@ -382,7 +371,6 @@ export default function AboutSection() {
                     isActive ? styles.polaroidSlotActive : ''
                   }`.trim()}
                   onPointerEnter={(event) => handleSlotEnter(index, event)}
-                  onPointerDown={(event) => handleSlotPointerDown(event, index)}
                   style={{
                     '--width-factor': widthFactor,
                     rotate: `${isActive ? 0 : randomRotations[index]}deg`,

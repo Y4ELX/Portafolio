@@ -15,7 +15,7 @@
 .inner {
   position: relative;
   z-index: 1;
-  width: min(1200px, calc(100% - 2.4rem));
+  width: min(var(--content-max-width), calc(100% - var(--content-gutter)));
   margin: 0 auto;
 }
 
@@ -23,7 +23,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   align-items: center;
-  gap: clamp(1.4rem, 3vw, 2.8rem);
+  gap: clamp(1.4rem, 3vw, 2.5rem);
 }
 
 .textColumn {
@@ -36,6 +36,7 @@
   color: var(--text-muted);
   line-height: 1.82;
   font-size: clamp(0.95rem, 1.4vw, 1.03rem);
+  max-width: 68ch;
 }
 
 .visualColumn {
@@ -44,7 +45,7 @@
   --polaroid-spread: 0px;
 
   position: relative;
-  min-height: 560px;
+  min-height: clamp(490px, 50vw, 560px);
   background: transparent;
   perspective: 1500px;
   transform-style: preserve-3d;
@@ -196,25 +197,49 @@
 }
 
 @media (max-width: 1060px) {
+  .section {
+    min-height: auto;
+    align-items: flex-start;
+    padding: clamp(4.5rem, 10vw, 5.6rem) 0 clamp(2.9rem, 8vw, 3.8rem);
+  }
+
   .layout {
     grid-template-columns: 1fr;
     gap: 1.7rem;
   }
 
+  .textColumn {
+    gap: 0.9rem;
+  }
+
   .visualColumn {
-    min-height: 520px;
+    min-height: 500px;
     width: min(680px, 100%);
     margin: 0 auto;
   }
 }
 
 @media (max-width: 760px) {
+  .section {
+    padding: clamp(3.9rem, 12vw, 4.9rem) 0 clamp(2.6rem, 8vw, 3.4rem);
+  }
+
+  .layout {
+    gap: 1.2rem;
+  }
+
+  .paragraph {
+    font-size: 0.95rem;
+    line-height: 1.72;
+  }
+
   .visualColumn {
     min-height: auto;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.9rem;
     perspective: none;
+    transform: none !important;
   }
 
   .focusOverlay {
@@ -244,5 +269,42 @@
   .polaroidActive {
     transform: translateY(-8px) rotate(calc(var(--base-rotation) * 0.4)) scale(1.03);
     box-shadow: 0 20px 36px rgba(0, 0, 0, 0.34);
+  }
+}
+
+@media (max-width: 520px) {
+  .visualColumn {
+    grid-template-columns: 1fr;
+    gap: 0.72rem;
+  }
+
+  .polaroid {
+    transform: none;
+  }
+
+  .polaroidActive {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.28);
+  }
+
+  .caption {
+    font-size: 0.72rem;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .polaroidSlot {
+    cursor: default;
+  }
+
+  .polaroid,
+  .polaroidActive,
+  .visualFocused .polaroid:not(.polaroidActive) {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .polaroidActive {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
   }
 }

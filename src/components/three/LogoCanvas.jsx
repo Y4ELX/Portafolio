@@ -14,7 +14,7 @@ const LOGO_VERTICAL_OFFSET = 0;
 const LOGO_SIZE_MULTIPLIER = 0.9;
 const MOBILE_BREAKPOINT = 860;
 const DESKTOP_PARTICLES = 160;
-const MOBILE_PARTICLES = 90;
+const MOBILE_PARTICLES = 64;
 
 function supportsMediaQuery(query) {
   return typeof window !== 'undefined' && typeof window.matchMedia === 'function' && window.matchMedia(query).matches;
@@ -209,6 +209,8 @@ export default function LogoCanvas() {
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const [isInView, setIsInView] = useState(true);
   const lowPower = isMobile || reducedMotion;
+  const canvasHeight = isMobile ? 320 : CANVAS_HEIGHT_PX;
+  const canvasAspectRatio = isMobile ? 1.2 : CANVAS_ASPECT_RATIO;
 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof window.IntersectionObserver !== 'function' || !wrapperRef.current) {
@@ -237,14 +239,14 @@ export default function LogoCanvas() {
       ref={wrapperRef}
       className={styles.wrapper}
       style={{
-        '--canvas-height': `${CANVAS_HEIGHT_PX}px`,
-        '--canvas-ratio': CANVAS_ASPECT_RATIO,
+        '--canvas-height': `${canvasHeight}px`,
+        '--canvas-ratio': canvasAspectRatio,
       }}
     >
       <Canvas
         frameloop={frameLoopMode}
         resize={{ scroll: false, debounce: { resize: 120 } }}
-        dpr={lowPower ? [1, 1.2] : [1, 1.45]}
+        dpr={lowPower ? [1, 1.1] : [1, 1.45]}
         gl={{ antialias: !lowPower, alpha: true, powerPreference: lowPower ? 'default' : 'high-performance' }}
       >
         <PerspectiveCamera makeDefault position={[0, -0.08, 5.15]} fov={43} />
@@ -259,7 +261,7 @@ export default function LogoCanvas() {
         <ParticleField lowPower={lowPower} />
         <LogoModel lowPower={lowPower} reducedMotion={reducedMotion} />
 
-        <Environment preset="city" />
+        {!lowPower && <Environment preset="city" />}
       </Canvas>
     </div>
   );

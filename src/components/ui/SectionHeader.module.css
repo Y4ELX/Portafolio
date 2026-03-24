@@ -2,7 +2,7 @@
   display: grid;
   gap: 0.95rem;
   max-width: 760px;
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.15rem;
 }
 
 .header h2 {
@@ -18,4 +18,22 @@
   color: var(--text-muted);
   line-height: 1.68;
   font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+}
+
+@media (max-width: 760px) {
+  .header {
+    gap: 0.72rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .header h2 {
+    font-size: clamp(1.35rem, 7.6vw, 2rem);
+    line-height: 1.08;
+  }
+
+  .header p {
+    font-size: 0.93rem;
+    line-height: 1.62;
+    max-width: 44ch;
+  }
 }

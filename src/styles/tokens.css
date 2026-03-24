@@ -28,4 +28,25 @@
 
   --transition-fast: 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition-base: 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --content-max-width: 1200px;
+  --content-gutter: 2.4rem;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --content-gutter: 1.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --content-gutter: 1.3rem;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --content-gutter: 1.05rem;
+  }
 }

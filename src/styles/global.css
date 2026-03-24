@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -22,7 +23,9 @@ body {
     radial-gradient(74% 46% at 22% 80%, rgba(79, 127, 255, 0.07), transparent 74%),
     linear-gradient(112deg, var(--bg-primary) 0%, var(--bg-secondary) 58%, #0f131d 100%);
   font-family: var(--font-ui);
+  font-size: 16px;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 body::before {
@@ -50,6 +53,10 @@ section {
   scroll-margin-top: 5.4rem;
 }
 
+main {
+  padding-bottom: 0;
+}
+
 ::selection {
   background: color-mix(in srgb, var(--accent) 75%, #ffffff 20%);
   color: #071109;
@@ -73,6 +80,22 @@ section {
   .cursor-hidden,
   .cursor-hidden * {
     cursor: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  section {
+    scroll-margin-top: 1.4rem;
+  }
+
+  main {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 430px) {
+  body {
+    font-size: 15.5px;
   }
 }
 

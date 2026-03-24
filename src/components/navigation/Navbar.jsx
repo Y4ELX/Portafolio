@@ -17,7 +17,8 @@ function scrollToSection(url) {
   if (!target) return;
 
   const topPadding = Number.parseFloat(window.getComputedStyle(target).paddingTop) || 0;
-  const fixedTopOffset = window.innerWidth >= 768 ? 86 : 24;
+  const isDesktop = window.innerWidth >= 768;
+  const fixedTopOffset = isDesktop ? 86 : Math.min(18, topPadding * 0.24);
   const targetTop = window.scrollY + target.getBoundingClientRect().top;
   const nextScrollTop = Math.max(0, targetTop + topPadding - fixedTopOffset);
 

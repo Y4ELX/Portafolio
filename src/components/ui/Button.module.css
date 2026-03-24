@@ -12,6 +12,7 @@
   letter-spacing: 0.02em;
   line-height: 1;
   text-decoration: none;
+  min-height: 2.65rem;
   padding: 0.9rem 1.2rem;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
@@ -21,8 +22,10 @@
   outline-offset: 2px;
 }
 
-.button:hover {
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    transform: translateY(-2px);
+  }
 }
 
 .primary {
@@ -45,4 +48,12 @@
 .ghost:hover {
   border-color: var(--accent);
   color: var(--accent-soft);
+}
+
+@media (max-width: 760px) {
+  .button {
+    min-height: 2.85rem;
+    font-size: 0.9rem;
+    padding: 0.78rem 1rem;
+  }
 }

@@ -11,7 +11,7 @@
 .inner {
   position: relative;
   z-index: 1;
-  width: min(1200px, calc(100% - 2.4rem));
+  width: min(var(--content-max-width), calc(100% - var(--content-gutter)));
   margin: 0 auto;
 }
 
@@ -56,7 +56,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.82rem;
+  gap: 0.8rem;
 }
 
 .projectCard {
@@ -72,7 +72,7 @@
     ),
     radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--projects-secondary) 10%, transparent), transparent 56%);
   display: grid;
-  grid-template-rows: clamp(162px, 12vw, 196px) 1fr auto;
+  grid-template-rows: clamp(160px, 12vw, 196px) 1fr auto;
   min-height: 100%;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
   transform: translateZ(0);
@@ -271,7 +271,7 @@
 }
 
 .actionButton {
-  min-height: 2rem;
+  min-height: 2.2rem;
   width: 100%;
   font-size: 0.72rem;
   border-radius: 0.6rem;
@@ -321,6 +321,10 @@
 }
 
 @media (max-width: 1080px) {
+  .section {
+    padding: clamp(2rem, 6.5vw, 3.8rem) 0;
+  }
+
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -328,7 +332,20 @@
 
 @media (max-width: 760px) {
   .section {
-    padding: clamp(1.9rem, 7vw, 3rem) 0;
+    padding: clamp(2.8rem, 9vw, 3.5rem) 0;
+  }
+
+  .header {
+    margin-bottom: 0.9rem;
+  }
+
+  .header h2 {
+    font-size: clamp(1.2rem, 6.8vw, 1.7rem);
+  }
+
+  .lead {
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .grid {
@@ -340,16 +357,56 @@
     grid-template-rows: auto 1fr auto;
   }
 
+  .featuredCard {
+    grid-column: auto;
+  }
+
   .projectMedia {
     aspect-ratio: 16 / 9;
   }
 
   .projectBody {
-    padding: 0.78rem 0.8rem 0.54rem;
+    gap: 0.5rem;
+    padding: 0.8rem 0.8rem 0.56rem;
   }
 
   .actions {
-    padding: 0 0.8rem 0.8rem;
+    padding: 0 0.8rem 0.82rem;
+  }
+
+  .actionButton {
+    min-height: 2.7rem;
+    font-size: 0.82rem;
+  }
+
+  .projectDescription {
+    -webkit-line-clamp: 4;
+  }
+
+  .projectMeta li {
+    font-size: 0.71rem;
+  }
+
+  .stackList li {
+    font-size: 0.68rem;
+    padding: 0.24rem 0.56rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .projectSummary,
+  .featuredBadge {
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.44rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .projectBody h3 {
+    font-size: 1.03rem;
   }
 }
 

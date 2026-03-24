@@ -11,3 +11,10 @@
   font-size: 0.76rem;
   letter-spacing: 0.04em;
 }
+
+@media (max-width: 760px) {
+  .tag {
+    padding: 0.3rem 0.62rem;
+    font-size: 0.7rem;
+  }
+}

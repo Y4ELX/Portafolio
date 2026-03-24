@@ -26,7 +26,8 @@ export function useActiveSection(sectionIds) {
 
     const detectActiveSection = () => {
       const viewportHeight = window.innerHeight || 0;
-      const probeY = window.scrollY + Math.min(viewportHeight * 0.42, 360);
+      const probeRatio = window.innerWidth >= 768 ? 0.4 : 0.28;
+      const probeY = window.scrollY + Math.min(viewportHeight * probeRatio, 360);
       const pageBottom = window.scrollY + viewportHeight;
       const maxScroll = document.documentElement.scrollHeight - 2;
 
@@ -35,13 +36,26 @@ export function useActiveSection(sectionIds) {
         return;
       }
 
-      let nextId = sections[0].id;
-      for (const section of sections) {
+      const sectionBounds = sections.map((section, index) => {
         const top = window.scrollY + section.getBoundingClientRect().top;
-        if (probeY >= top) {
-          nextId = section.id;
-        } else {
+        const nextTop =
+          index < sections.length - 1
+            ? window.scrollY + sections[index + 1].getBoundingClientRect().top
+            : top + section.getBoundingClientRect().height;
+
+        return { id: section.id, top, bottom: nextTop };
+      });
+
+      let nextId = sectionBounds[0].id;
+
+      for (const bound of sectionBounds) {
+        if (probeY >= bound.top && probeY < bound.bottom) {
+          nextId = bound.id;
           break;
+        }
+
+        if (probeY >= bound.top) {
+          nextId = bound.id;
         }
       }
 

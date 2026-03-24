@@ -1,0 +1,27 @@
+.cursorLayer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1100;
+}
+
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 999px;
+  background: #51e153;
+  opacity: 0;
+  box-shadow: 0 0 0 1px rgba(81, 225, 83, 0.25), 0 8px 20px rgba(81, 225, 83, 0.32);
+  transform: translate3d(-120px, -120px, 0);
+  transition: opacity 220ms ease;
+  will-change: transform, opacity;
+}
+
+.inverted {
+  mix-blend-mode: difference;
+}
+
+.visible {
+  opacity: 0.92;
+}

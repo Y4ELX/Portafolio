@@ -69,6 +69,13 @@ section {
   background: color-mix(in srgb, var(--bg-primary) 85%, #000000);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .cursor-hidden,
+  .cursor-hidden * {
+    cursor: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

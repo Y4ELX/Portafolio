@@ -83,8 +83,7 @@ export default function ProjectsSection() {
           <p className={styles.eyebrow}>Proyectos</p>
           <h2>Estos son algunos de mis proyectos</h2>
           <p className={styles.lead}>
-            Vitrina de productos con enfoque visual moderno, decisiones técnicas claras y ejecución orientada a
-            rendimiento.
+            Proyectos en los que combino diseño, funcionalidad y una base técnica sólida para crear experiencias digitales atractivas.
           </p>
         </header>
 

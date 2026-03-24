@@ -1,8 +1,8 @@
 ﻿export const profile = {
   name: 'Yael Monterrubio',
-  role: 'Desarrollador de experiencias web',
+  role: 'Full Stack Developer',
   shortIntro:
-    'Diseño y desarrollo experiencias web donde la estética, la interacción y el rendimiento trabajan juntos para crear productos memorables.',
+    'Desarrollo experiencias y soluciones web donde el diseño, la personalización, la interacción y el rendimiento se unen para crear productos que conectan y destacan.',
   longIntro:
     'Soy técnico en Programación y actualmente estoy por egresar de Ingeniería en Sistemas Computacionales y Electrónicos en la Universidad del Noreste. Me especializo en frontend y en experiencias interactivas de alto impacto visual.',
   birthdate: '2005-04-23',

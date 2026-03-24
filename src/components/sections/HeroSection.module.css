@@ -77,8 +77,7 @@
 }
 
 .heroTitle {
-  width: min(100%, 550px);
-  max-width: 100%;
+  width: 550px;
 }
 
 .role {

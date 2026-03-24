@@ -9,17 +9,23 @@ const navItems = [
   { name: 'Proyectos', url: '#projects', icon: FolderKanban },
   { name: 'Contacto', url: '#contact', icon: Mail },
 ];
+const sectionIds = navItems.map((item) => item.url.replace('#', ''));
 
 function scrollToSection(url) {
   const id = url.replace('#', '');
   const target = document.getElementById(id);
-  if (target) {
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  if (!target) return;
+
+  const topPadding = Number.parseFloat(window.getComputedStyle(target).paddingTop) || 0;
+  const fixedTopOffset = window.innerWidth >= 768 ? 86 : 24;
+  const targetTop = window.scrollY + target.getBoundingClientRect().top;
+  const nextScrollTop = Math.max(0, targetTop + topPadding - fixedTopOffset);
+
+  window.scrollTo({ top: nextScrollTop, behavior: 'smooth' });
 }
 
 export default function Navbar() {
-  const activeSection = useActiveSection(navItems.map((item) => item.url.replace('#', '')));
+  const activeSection = useActiveSection(sectionIds);
   const activeTab = navItems.find((item) => item.url === `#${activeSection}`)?.name ?? navItems[0].name;
 
   return <TubeLightNavBar items={navItems} activeTab={activeTab} onTabChange={scrollToSection} />;

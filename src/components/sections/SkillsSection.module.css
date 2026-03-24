@@ -3,7 +3,11 @@
   --skills-secondary: var(--accent);
 
   position: relative;
-  padding: clamp(2.6rem, 7vw, 4.8rem) 0 clamp(2.9rem, 7.4vw, 5.2rem);
+  min-height: 100svh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: clamp(5rem, 9.2vh, 6rem) 0 clamp(3.6rem, 7.8vh, 4.8rem);
   overflow: visible;
   isolation: isolate;
 }

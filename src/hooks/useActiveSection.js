@@ -14,58 +14,58 @@ export function useActiveSection(sectionIds) {
     }
 
     let frameId = null;
+
     const updateActiveSection = (nextSectionId) => {
       if (!nextSectionId || nextSectionId === activeSectionRef.current) {
         return;
       }
 
+      activeSectionRef.current = nextSectionId;
+      setActiveSection(nextSectionId);
+    };
+
+    const detectActiveSection = () => {
+      const viewportHeight = window.innerHeight || 0;
+      const probeY = window.scrollY + Math.min(viewportHeight * 0.42, 360);
+      const pageBottom = window.scrollY + viewportHeight;
+      const maxScroll = document.documentElement.scrollHeight - 2;
+
+      if (pageBottom >= maxScroll) {
+        updateActiveSection(sections[sections.length - 1].id);
+        return;
+      }
+
+      let nextId = sections[0].id;
+      for (const section of sections) {
+        const top = window.scrollY + section.getBoundingClientRect().top;
+        if (probeY >= top) {
+          nextId = section.id;
+        } else {
+          break;
+        }
+      }
+
+      updateActiveSection(nextId);
+    };
+
+    const scheduleDetect = () => {
       if (frameId !== null) {
-        window.cancelAnimationFrame(frameId);
+        return;
       }
 
       frameId = window.requestAnimationFrame(() => {
         frameId = null;
-        if (nextSectionId === activeSectionRef.current) {
-          return;
-        }
-        activeSectionRef.current = nextSectionId;
-        setActiveSection(nextSectionId);
+        detectActiveSection();
       });
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let nextCandidate = null;
+    detectActiveSection();
+    window.addEventListener('scroll', scheduleDetect, { passive: true });
+    window.addEventListener('resize', scheduleDetect);
 
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          if (
-            !nextCandidate ||
-            entry.intersectionRatio > nextCandidate.intersectionRatio ||
-            (entry.intersectionRatio === nextCandidate.intersectionRatio &&
-              entry.boundingClientRect.top < nextCandidate.boundingClientRect.top)
-          ) {
-            nextCandidate = entry;
-          }
-        });
-
-        if (nextCandidate) {
-          updateActiveSection(nextCandidate.target.id);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '-32% 0px -52% 0px',
-        threshold: [0, 0.15, 0.35, 0.55],
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
     return () => {
-      observer.disconnect();
+      window.removeEventListener('scroll', scheduleDetect);
+      window.removeEventListener('resize', scheduleDetect);
       if (frameId !== null) {
         window.cancelAnimationFrame(frameId);
       }

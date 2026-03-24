@@ -7,12 +7,16 @@ import styles from './ProjectsSection.module.css';
 
 const ProjectCard = memo(function ProjectCard({ project }) {
   const stackPreview = project.stack.slice(0, 4);
+  const isFeatured = project.id === 'tampiguessr';
 
   return (
-    <GlassCard className={styles.projectCard}>
+    <GlassCard className={`${styles.projectCard} ${isFeatured ? styles.featuredCard : ''}`.trim()}>
       <div className={styles.projectMedia}>
         <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
-        <span className={styles.projectSummary}>{project.summary}</span>
+        <span className={`${styles.projectSummary} ${isFeatured ? styles.featuredSummary : ''}`.trim()}>
+          {project.summary}
+        </span>
+        {isFeatured ? <span className={styles.featuredBadge}>Proyecto Estrella</span> : null}
       </div>
 
       <div className={styles.projectBody}>

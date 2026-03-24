@@ -70,11 +70,27 @@ export default function AboutSection() {
     []
   );
 
-  const introText = `Tengo ${age} años, soy técnico en Programación y ${academicStatus}.`;
-  const detailText =
-    'Desde muy pequeño me ha apasionado la tecnología, y con el tiempo esa curiosidad se convirtió en una forma de crear, resolver problemas y dar vida a ideas a través del desarrollo.';
-  const stackText =
-    'Disfruto construir proyectos completos que combinan diseño, lógica y funcionalidad, especialmente en desarrollo web y software. He trabajado con React, Angular, Firebase, JavaScript, TypeScript y Python para crear experiencias modernas, útiles y bien pensadas.';
+  const introText = (
+    <>
+      <strong>Tengo {age} años</strong>, soy <strong>técnico en Programación</strong> y{' '}
+      <strong>{academicStatus}</strong>.
+    </>
+  );
+
+  const detailText = (
+    <>
+      Desde muy pequeño me ha apasionado la tecnología, y con el tiempo esa curiosidad se convirtió en una forma de
+      crear, resolver problemas y dar vida a ideas a través del desarrollo.
+    </>
+  );
+
+  const stackText = (
+    <>
+      Disfruto construir proyectos completos que combinan diseño, lógica y funcionalidad, especialmente en desarrollo
+      web y software. He trabajado con <strong>React, Angular, Firebase, JavaScript, TypeScript y Python</strong> para
+      crear experiencias modernas, útiles y bien pensadas.
+    </>
+  );
 
   const updateFocusPosition = useCallback((index) => {
     const slot = cardRefs.current[index];

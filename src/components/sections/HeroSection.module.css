@@ -1,5 +1,9 @@
 .hero {
-  padding: clamp(2rem, 6vw, 4rem) 0 clamp(2.5rem, 10vw, 7rem);
+  min-height: 100svh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: clamp(5.2rem, 10vh, 6.8rem) 0 clamp(3.8rem, 8vh, 5.5rem);
 }
 
 .inner {

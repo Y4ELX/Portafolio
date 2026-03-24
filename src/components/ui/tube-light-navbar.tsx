@@ -18,13 +18,15 @@ interface NavBarProps {
 }
 
 export function NavBar({ items, className, activeTab: activeTabProp, onTabChange }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(activeTabProp ?? items[0]?.name ?? '');
+  const isControlled = typeof activeTabProp === 'string';
+  const [internalActiveTab, setInternalActiveTab] = useState(items[0]?.name ?? '');
   const [isMobile, setIsMobile] = useState(false);
+  const activeTab = isControlled ? (activeTabProp ?? items[0]?.name ?? '') : internalActiveTab;
 
   useEffect(() => {
-    if (!activeTabProp) return;
-    setActiveTab(activeTabProp);
-  }, [activeTabProp]);
+    if (isControlled || items.length === 0) return;
+    setInternalActiveTab((prev) => prev || items[0].name);
+  }, [isControlled, items]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,7 +51,9 @@ export function NavBar({ items, className, activeTab: activeTabProp, onTabChange
               href={item.url}
               onClick={(event) => {
                 event.preventDefault();
-                setActiveTab(item.name);
+                if (!isControlled) {
+                  setInternalActiveTab(item.name);
+                }
                 onTabChange?.(item.url);
               }}
               className={cn(styles.navItem, isActive ? styles.active : '')}
@@ -66,7 +70,7 @@ export function NavBar({ items, className, activeTab: activeTabProp, onTabChange
                   layoutId="tube-lamp"
                   className={styles.lamp}
                   initial={false}
-                  transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+                  transition={{ type: 'spring', stiffness: 170, damping: 26, mass: 1.15 }}
                 >
                   <div className={styles.lampTop}>
                     <div className={styles.glowWide} />
